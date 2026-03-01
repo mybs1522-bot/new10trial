@@ -1,0 +1,28 @@
+project_id = "iifdnebyorozickqcjrc"
+
+[functions.seed-freelance-jobs]
+verify_jwt = false
+
+[functions.razorpay-create-order]
+verify_jwt = false
+
+[functions.razorpay-verify-payment]
+verify_jwt = false
+
+[functions.enqueue-student-drip]
+verify_jwt = false
+
+[functions.process-drip-emails]
+verify_jwt = false
+
+[functions.send-email-bulk]
+verify_jwt = false
+
+[functions.send-email]
+verify_jwt = false
+
+[functions.send-otp]
+verify_jwt = false
+
+[functions.verify-otp]
+verify_jwt = false

@@ -1,0 +1,1 @@
+ALTER TABLE public.otp_codes ADD COLUMN used boolean NOT NULL DEFAULT false;

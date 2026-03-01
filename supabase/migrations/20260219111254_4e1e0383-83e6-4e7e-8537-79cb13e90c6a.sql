@@ -1,0 +1,1 @@
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS has_execution_plan boolean NOT NULL DEFAULT false;

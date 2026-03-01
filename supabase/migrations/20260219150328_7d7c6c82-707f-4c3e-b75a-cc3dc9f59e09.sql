@@ -1,0 +1,1 @@
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS has_trial boolean NOT NULL DEFAULT false;
