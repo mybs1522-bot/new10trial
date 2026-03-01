@@ -363,7 +363,7 @@ function SalesPage({ profile, navigate }: { profile: any; navigate: any }) {
             </p>
             <UnlockBtn label="Start Your Free Trial Now" large />
             <p className="text-white/20 text-[10px] mt-4 font-medium">
-              🔒 No credit card required to start · Instant access to all content
+              🔒 Secure checkout · Instant access to all content
             </p>
           </div>
         </div>
