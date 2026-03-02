@@ -21,6 +21,7 @@ import StartCourseTab from "./pages/dashboard/StartCourseTab";
 import ProfileTab from "./pages/dashboard/ProfileTab";
 import NotFound from "./pages/NotFound";
 import PreviewPage from "./pages/PreviewPage";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <AuthProvider>
           <Routes>
             <Route path="/" element={<LandingPage />} />
