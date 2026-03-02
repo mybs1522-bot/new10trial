@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, BookOpen, Briefcase, Layers, ArrowRight, X, ChevronUp, Clock } from "lucide-react";
+import { GraduationCap, BookOpen, Briefcase, Layers, ArrowRight, X, ChevronUp, Clock, Lock } from "lucide-react";
 import courseAutocad from "@/assets/course-autocad.jpg";
 import courseSketchup from "@/assets/course-sketchup.jpg";
 import courseD5 from "@/assets/course-d5render.jpg";
@@ -40,6 +40,12 @@ const SAMPLE_JOBS = [
     { title: "Restaurant Interior Design - 1800 sq ft", budget: "$1.5K - $3K", location: "Le Marais, Paris", daysAgo: 1 },
     { title: "Corporate Office Interior - 2000 sq ft", budget: "$1K - $2.5K", location: "CBD, Sydney", daysAgo: 0 },
     { title: "Master Bedroom Design with Bathroom", budget: "$500 - $1.2K", location: "Jumeirah, Dubai", daysAgo: 3 },
+    { title: "Modern Cafe Interior - 1200 sq ft", budget: "$1K - $2K", location: "Shibuya, Tokyo", daysAgo: 0 },
+    { title: "Studio Apartment Full Redesign", budget: "$600 - $1.2K", location: "Kreuzberg, Berlin", daysAgo: 1 },
+    { title: "Boutique Hotel Lobby Design", budget: "$2.5K - $5K", location: "Soho, New York", daysAgo: 2 },
+    { title: "Dental Clinic Waiting Area", budget: "$800 - $1.5K", location: "Gangnam, Seoul", daysAgo: 0 },
+    { title: "Co-working Space - 3000 sq ft", budget: "$1.8K - $3.5K", location: "Shoreditch, London", daysAgo: 1 },
+    { title: "Luxury Villa Living Room", budget: "$1.5K - $3K", location: "Bali, Indonesia", daysAgo: 3 },
 ];
 
 const ASSETS_3D = [
@@ -86,6 +92,7 @@ const sectionVariants = {
 
 export default function PreviewPage() {
     const [showForm, setShowForm] = useState(false);
+    const [showAllJobs, setShowAllJobs] = useState(false);
     const topRef = useRef<HTMLDivElement>(null);
 
     // Evergreen countdown timer (resets from localStorage)
@@ -347,7 +354,7 @@ export default function PreviewPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    {SAMPLE_JOBS.map((job, i) => (
+                    {(showAllJobs ? SAMPLE_JOBS : SAMPLE_JOBS.slice(0, 6)).map((job, i) => (
                         <motion.div
                             key={i}
                             custom={i}
@@ -368,12 +375,29 @@ export default function PreviewPage() {
                                 )}
                             </div>
                             <h3 className="text-[11px] sm:text-xs font-black text-foreground uppercase tracking-tight mb-2 line-clamp-1">{job.title}</h3>
-                            <div className="flex flex-wrap gap-2 text-[9px] font-bold text-muted-foreground uppercase tracking-widest">
+                            <div className="flex flex-wrap gap-2 text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-3">
                                 <span className="bg-muted/50 px-2 py-1 rounded-lg">{job.budget}</span>
                                 <span className="bg-muted/50 px-2 py-1 rounded-lg">{job.location}</span>
                             </div>
+                            <button
+                                onClick={() => setShowForm(true)}
+                                className="w-full flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-widest text-white/70 bg-white/[0.06] border border-white/10 rounded-xl py-2.5 hover:bg-blue-500/10 hover:border-blue-500/20 hover:text-blue-400 transition-all"
+                            >
+                                <Lock className="h-3 w-3" />
+                                Members only — Apply
+                            </button>
                         </motion.div>
                     ))}
+                </div>
+
+                {/* View all / Show less */}
+                <div className="mt-4 text-center">
+                    <button
+                        onClick={() => setShowAllJobs(!showAllJobs)}
+                        className="text-[10px] font-black uppercase tracking-widest text-blue-500 hover:text-blue-400 transition-colors"
+                    >
+                        {showAllJobs ? "Show fewer jobs" : `View all ${SAMPLE_JOBS.length} jobs`}
+                    </button>
                 </div>
             </motion.section>
 
