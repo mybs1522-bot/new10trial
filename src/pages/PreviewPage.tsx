@@ -35,12 +35,12 @@ const BOOKS = [
 ];
 
 const SAMPLE_JOBS = [
-    { title: "Complete Interior Design for 2-Bed Apartment", budget: "$4K - $8K", location: "Brooklyn, New York", daysAgo: 1 },
-    { title: "3-Bed Flat - Scandinavian Style Interiors", budget: "$8K - $15K", location: "Shoreditch, London", daysAgo: 0 },
-    { title: "Luxury Penthouse Interior Design", budget: "$15K - $30K", location: "Marina Bay, Singapore", daysAgo: 2 },
-    { title: "Restaurant Interior Design - 1800 sq ft", budget: "$9K - $18K", location: "Le Marais, Paris", daysAgo: 1 },
-    { title: "Corporate Office Interior - 2000 sq ft", budget: "$7K - $16K", location: "CBD, Sydney", daysAgo: 0 },
-    { title: "Master Bedroom Design with Bathroom", budget: "$3K - $6K", location: "Jumeirah, Dubai", daysAgo: 3 },
+    { title: "Complete Interior Design for 2-Bed Apartment", budget: "$800 - $1.5K", location: "Brooklyn, New York", daysAgo: 1 },
+    { title: "3-Bed Flat - Scandinavian Style Interiors", budget: "$1.2K - $2.5K", location: "Shoreditch, London", daysAgo: 0 },
+    { title: "Luxury Penthouse Interior Design", budget: "$2K - $4K", location: "Marina Bay, Singapore", daysAgo: 2 },
+    { title: "Restaurant Interior Design - 1800 sq ft", budget: "$1.5K - $3K", location: "Le Marais, Paris", daysAgo: 1 },
+    { title: "Corporate Office Interior - 2000 sq ft", budget: "$1K - $2.5K", location: "CBD, Sydney", daysAgo: 0 },
+    { title: "Master Bedroom Design with Bathroom", budget: "$500 - $1.2K", location: "Jumeirah, Dubai", daysAgo: 3 },
 ];
 
 const ASSETS_3D = [
