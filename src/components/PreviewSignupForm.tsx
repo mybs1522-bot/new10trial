@@ -27,7 +27,7 @@ function InnerForm() {
     const elements = useElements();
     const navigate = useNavigate();
     const { toast } = useToast();
-    const { refreshProfile } = useAuth();
+    const { markPaid } = useAuth();
 
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState<"details" | "card">("details");
@@ -147,7 +147,7 @@ function InnerForm() {
                 const { data: subData } = await supabase.functions.invoke("check-subscription");
                 if (subData?.subscribed) {
                     toast({ title: "Welcome aboard!", description: "Your 3-day free trial has started." });
-                    await refreshProfile();
+                    markPaid({ full_name: form.full_name, phone: `${countryCode}${form.phone}` });
                     navigate("/dashboard");
                     return;
                 }
@@ -157,14 +157,14 @@ function InnerForm() {
                     const { data: retryData } = await supabase.functions.invoke("check-subscription");
                     if (retryData?.subscribed) {
                         toast({ title: "Welcome aboard!", description: "Your 3-day free trial has started." });
-                        await refreshProfile();
+                        markPaid({ full_name: form.full_name, phone: `${countryCode}${form.phone}` });
                         navigate("/dashboard");
                         return;
                     }
                 }
                 // Still proceed to dashboard even if check-subscription is slow
                 toast({ title: "Welcome!", description: "Your account is being set up. Access will be ready shortly." });
-                await refreshProfile();
+                markPaid({ full_name: form.full_name, phone: `${countryCode}${form.phone}` });
                 navigate("/dashboard");
                 return;
             }
@@ -174,7 +174,7 @@ function InnerForm() {
                     const { data: retryData } = await supabase.functions.invoke("check-subscription");
                     if (retryData?.subscribed) {
                         toast({ title: "Welcome aboard!", description: "Your 3-day free trial has started." });
-                        await refreshProfile();
+                        markPaid({ full_name: form.full_name, phone: `${countryCode}${form.phone}` });
                         navigate("/dashboard");
                         return;
                     }

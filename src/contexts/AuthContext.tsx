@@ -22,6 +22,7 @@ interface AuthContextType {
   loading: boolean;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
+  markPaid: (data?: Partial<Profile>) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -30,8 +31,9 @@ const AuthContext = createContext<AuthContextType>({
   profile: null,
   isAdmin: false,
   loading: true,
-  signOut: async () => {},
-  refreshProfile: async () => {},
+  signOut: async () => { },
+  refreshProfile: async () => { },
+  markPaid: (data?: Partial<Profile>) => { },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -49,7 +51,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .select("*")
       .eq("id", userId)
       .single();
-    if (data) setProfile(data as Profile);
+    if (data) {
+      setProfile(prev => {
+        const serverProfile = data as Profile;
+        // Don't downgrade has_paid from true to false (protect optimistic markPaid)
+        if (prev?.has_paid && !serverProfile.has_paid) {
+          return { ...serverProfile, has_paid: true, has_trial: prev.has_trial };
+        }
+        return serverProfile;
+      });
+    }
   };
 
   const checkAdminRole = async (userId: string) => {
@@ -67,6 +78,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await fetchProfile(user.id);
       await checkAdminRole(user.id);
     }
+  };
+
+  const markPaid = (data?: Partial<Profile>) => {
+    setProfile(prev => {
+      const base = prev || {
+        id: '', full_name: '', phone: '', location: '',
+        mode: '', experience_level: '',
+        has_paid: false, has_trial: false, has_execution_plan: false,
+      };
+      return { ...base, ...data, has_paid: true, has_trial: true };
+    });
   };
 
   const enqueueDrip = async (userId: string, email: string) => {
@@ -133,7 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, profile, isAdmin, loading, signOut, refreshProfile }}>
+    <AuthContext.Provider value={{ user, session, profile, isAdmin, loading, signOut, refreshProfile, markPaid }}>
       {children}
     </AuthContext.Provider>
   );
