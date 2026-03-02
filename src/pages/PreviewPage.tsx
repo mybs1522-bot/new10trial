@@ -167,8 +167,8 @@ export default function PreviewPage() {
         },
         {
             id: "freelance",
-            title: "Freelance Job Board",
-            subtitle: "Real client projects, real money",
+            title: "Community Freelance Board",
+            subtitle: "★ The best part — real clients, real projects, real pay",
             icon: Briefcase,
             color: "from-blue-500/10 to-indigo-500/10",
             iconColor: "text-blue-500",
@@ -209,12 +209,12 @@ export default function PreviewPage() {
                 transition={{ duration: 0.6 }}
                 className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-6 sm:pt-14 sm:pb-8 text-center"
             >
-                <p className="text-accent text-[10px] font-black tracking-[0.25em] uppercase mb-3">What You Get With Your Trial</p>
+                <p className="text-accent text-[10px] font-black tracking-[0.25em] uppercase mb-3">Learn + earn in one place</p>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground tracking-tight mb-3 leading-tight">
-                    Everything You Need to Start<br className="hidden sm:block" /> Earning as a Designer
+                    Master Design Skills. Get Real<br className="hidden sm:block" /> Freelance Projects Inside.
                 </h1>
                 <p className="text-muted-foreground text-sm sm:text-base font-medium max-w-xl mx-auto">
-                    Browse the full collection below. Start your 3-day free trial to unlock everything instantly.
+                    The only platform where you learn design tools and apply for real client projects — all in one community. Start your 3-day free trial.
                 </p>
             </motion.section>
 

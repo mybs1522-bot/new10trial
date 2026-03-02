@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 import {
   Monitor, Box, Video, Cpu, Layers, Users,
-  BookOpen, CheckCircle, ArrowRight,
+  BookOpen, CheckCircle, ArrowRight, Briefcase,
   Shield, BadgeCheck, Clock, Sparkles
 } from "lucide-react";
 
@@ -136,14 +136,14 @@ export default function LandingPage() {
 
       {/* ─── HERO ─── */}
       <AnimatedMarqueeHero
-        tagline="$4.2M+ earned by our students so far"
+        tagline="Learn design skills + get real freelance projects"
         title={
           <>
-            The $10/month program that turned{" "}
-            <span className="text-green-gradient">10,000 beginners into paid designers</span>
+            The only platform where you{" "}
+            <span className="text-green-gradient">learn and earn at the same time</span>
           </>
         }
-        description="6 professional courses. 6 design books. 100+ freelance gigs. A verified certificate. Everything you need to go from 'I have no experience' to billing your first client — in about 3 weeks. Try it free, $0 today."
+        description="Master 6 design tools, then apply for real freelance projects — all inside one community. No job hunting. No cold outreach. We bring the clients to you. Try it free, $0 today."
         ctaText="Get instant access — $0 today"
         ctaSecondaryText="See the full curriculum"
         onCtaClick={() => navigate('/preview')}
@@ -313,6 +313,58 @@ export default function LandingPage() {
                 <p className="text-[13.5px] font-medium text-foreground">{item}</p>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ─── FREELANCE COMMUNITY HIGHLIGHT ─── */}
+      <motion.section
+        className="py-16 sm:py-24 px-4 bg-accent/[0.03]"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <div className="container mx-auto max-w-4xl">
+          <motion.div className="text-center mb-10" variants={sectionVariants}>
+            <p className="section-label mb-3">This is what makes us different</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground leading-tight">
+              You don't just learn here.{" "}
+              <span className="text-green-gradient">You get hired here.</span>
+            </h2>
+            <p className="mt-4 text-[15px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Most courses teach you skills and then leave you alone to figure out how to make money. We do the opposite — our community freelance board brings real clients directly to you. Learn the skills, apply for projects, and start earning. All in one place.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid sm:grid-cols-3 gap-4"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.div variants={itemVariants} className="rounded-2xl border border-accent/15 bg-white p-6 shadow-soft text-center card-hover">
+              <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <Briefcase className="h-5 w-5 text-accent" />
+              </div>
+              <h3 className="font-display font-bold text-sm text-foreground mb-2">Real client projects</h3>
+              <p className="text-[12px] text-muted-foreground leading-relaxed">New freelance gigs posted every week by clients who need interior design work done. No cold outreach needed.</p>
+            </motion.div>
+            <motion.div variants={itemVariants} className="rounded-2xl border border-accent/15 bg-white p-6 shadow-soft text-center card-hover">
+              <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <Users className="h-5 w-5 text-accent" />
+              </div>
+              <h3 className="font-display font-bold text-sm text-foreground mb-2">Community-verified</h3>
+              <p className="text-[12px] text-muted-foreground leading-relaxed">Submit your portfolio, get verified by our team, and stand out to clients as a trusted, qualified designer.</p>
+            </motion.div>
+            <motion.div variants={itemVariants} className="rounded-2xl border border-accent/15 bg-white p-6 shadow-soft text-center card-hover">
+              <div className="h-11 w-11 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <BadgeCheck className="h-5 w-5 text-accent" />
+              </div>
+              <h3 className="font-display font-bold text-sm text-foreground mb-2">Learn, apply, earn — repeat</h3>
+              <p className="text-[12px] text-muted-foreground leading-relaxed">The entire cycle happens inside one platform. Finish a course module, immediately apply it to a paid project.</p>
+            </motion.div>
           </motion.div>
         </div>
       </motion.section>
