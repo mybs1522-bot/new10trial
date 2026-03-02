@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, BookOpen, Briefcase, Layers, ArrowRight, X, ChevronUp } from "lucide-react";
+import { GraduationCap, BookOpen, Briefcase, Layers, ArrowRight, X, ChevronUp, Clock } from "lucide-react";
 import courseAutocad from "@/assets/course-autocad.jpg";
 import courseSketchup from "@/assets/course-sketchup.jpg";
 import courseD5 from "@/assets/course-d5render.jpg";
@@ -50,6 +50,26 @@ const ASSETS_3D = [
     { title: "Office Furniture Bundle", items: "35+ models" },
     { title: "Exterior Landscape Pack", items: "50+ models" },
     { title: "Lighting & Decor Set", items: "60+ models" },
+];
+
+const UPCOMING_COURSES = [
+    "Lumion Rendering Masterclass",
+    "Revit for Interior Designers",
+    "V-Ray Lighting & Materials",
+    "Enscape Real-Time Walkthrough",
+    "3ds Max Interior Visualization",
+    "Color Theory for Interiors",
+    "Space Planning Fundamentals",
+    "Blender for Architectural Viz",
+];
+
+const UPCOMING_BOOKS = [
+    "How to Design a Pooja Room",
+    "How to Design a Home Office",
+    "How to Design a Kids Room",
+    "How to Design a Balcony & Terrace",
+    "How to Design a Dining Area",
+    "How to Design a Walk-in Closet",
 ];
 
 const cardVariants = {
@@ -237,6 +257,21 @@ export default function PreviewPage() {
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Coming this week */}
+                <div className="mt-5 rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                        <Clock className="h-3.5 w-3.5 text-emerald-500" />
+                        <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">New courses coming this week</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                        {UPCOMING_COURSES.map((name) => (
+                            <span key={name} className="text-[9px] sm:text-[10px] font-bold text-muted-foreground bg-foreground/[0.03] border border-white/5 px-2.5 py-1.5 rounded-lg">
+                                {name}
+                            </span>
+                        ))}
+                    </div>
+                </div>
             </motion.section>
 
             {/* ═══ BOOKS SECTION ═══ */}
@@ -277,6 +312,21 @@ export default function PreviewPage() {
                             </div>
                         </motion.div>
                     ))}
+                </div>
+
+                {/* Coming this week */}
+                <div className="mt-5 rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                        <Clock className="h-3.5 w-3.5 text-amber-500" />
+                        <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">New books coming this week</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                        {UPCOMING_BOOKS.map((name) => (
+                            <span key={name} className="text-[9px] sm:text-[10px] font-bold text-muted-foreground bg-foreground/[0.03] border border-white/5 px-2.5 py-1.5 rounded-lg">
+                                {name}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </motion.section>
 
