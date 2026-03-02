@@ -33,20 +33,50 @@ const BOOKS = [
     { id: "exteriors", title: "How to Design Exteriors", image: bookElevations },
 ];
 
-const SAMPLE_JOBS = [
-    { title: "Complete Interior Design for 2-Bed Apartment", budget: "$800 - $1.5K", location: "Brooklyn, New York", daysAgo: 1 },
-    { title: "3-Bed Flat - Scandinavian Style Interiors", budget: "$1.2K - $2.5K", location: "Shoreditch, London", daysAgo: 0 },
-    { title: "Luxury Penthouse Interior Design", budget: "$2K - $4K", location: "Marina Bay, Singapore", daysAgo: 2 },
-    { title: "Restaurant Interior Design - 1800 sq ft", budget: "$1.5K - $3K", location: "Le Marais, Paris", daysAgo: 1 },
-    { title: "Corporate Office Interior - 2000 sq ft", budget: "$1K - $2.5K", location: "CBD, Sydney", daysAgo: 0 },
-    { title: "Master Bedroom Design with Bathroom", budget: "$500 - $1.2K", location: "Jumeirah, Dubai", daysAgo: 3 },
-    { title: "Modern Cafe Interior - 1200 sq ft", budget: "$1K - $2K", location: "Shibuya, Tokyo", daysAgo: 0 },
-    { title: "Studio Apartment Full Redesign", budget: "$600 - $1.2K", location: "Kreuzberg, Berlin", daysAgo: 1 },
-    { title: "Boutique Hotel Lobby Design", budget: "$2.5K - $5K", location: "Soho, New York", daysAgo: 2 },
-    { title: "Dental Clinic Waiting Area", budget: "$800 - $1.5K", location: "Gangnam, Seoul", daysAgo: 0 },
-    { title: "Co-working Space - 3000 sq ft", budget: "$1.8K - $3.5K", location: "Shoreditch, London", daysAgo: 1 },
-    { title: "Luxury Villa Living Room", budget: "$1.5K - $3K", location: "Bali, Indonesia", daysAgo: 3 },
+const JOB_TITLES = [
+    "Complete Interior Design for 2-Bed Apartment", "3-Bed Flat - Scandinavian Style Interiors",
+    "Luxury Penthouse Interior Design", "Restaurant Interior Design - 1800 sq ft",
+    "Corporate Office Interior - 2000 sq ft", "Master Bedroom Design with Bathroom",
+    "Modern Cafe Interior - 1200 sq ft", "Studio Apartment Full Redesign",
+    "Boutique Hotel Lobby Design", "Dental Clinic Waiting Area",
+    "Co-working Space - 3000 sq ft", "Luxury Villa Living Room",
+    "Kids Room Design and Decor", "Home Office Setup - Minimal Style",
+    "Spa and Wellness Center Interior", "Open Kitchen and Dining Area",
+    "Retail Store Fitout - 800 sq ft", "Gym and Fitness Studio Design",
+    "Farmhouse Style Living Room", "Airbnb Apartment Makeover",
+    "Law Firm Office Interiors", "Bakery Shop Interior - Cozy Theme",
+    "Penthouse Terrace Lounge Design", "Traditional Style Pooja Room",
+    "Art Gallery Exhibition Space", "Hair Salon Full Interior",
+    "3BHK Flat - Modern Minimalist", "Bar and Lounge Interior",
+    "Library and Reading Room Design", "Pet-Friendly Home Redesign",
+    "Rooftop Bar Design Concept", "Medical Clinic Reception Area",
+    "Startup Office - Industrial Theme", "Beach House Interior",
+    "Wedding Venue Decor Concept", "Luxury Walk-in Closet",
 ];
+const JOB_LOCATIONS = [
+    "Brooklyn, New York", "Shoreditch, London", "Marina Bay, Singapore",
+    "Le Marais, Paris", "CBD, Sydney", "Jumeirah, Dubai",
+    "Shibuya, Tokyo", "Kreuzberg, Berlin", "Gangnam, Seoul",
+    "Bali, Indonesia", "Soho, New York", "Covent Garden, London",
+    "Orchard Road, Singapore", "Eixample, Barcelona", "Aoyama, Tokyo",
+    "Mitte, Berlin", "Condesa, Mexico City", "Itaewon, Seoul",
+    "Trastevere, Rome", "Fitzroy, Melbourne", "Canggu, Bali",
+    "Palermo, Buenos Aires", "Karama, Dubai", "Nyhavn, Copenhagen",
+    "Gracia, Barcelona", "Wan Chai, Hong Kong", "Beyoglu, Istanbul",
+    "Colaba, Mumbai", "Seminyak, Bali", "Old Town, Prague",
+];
+const JOB_BUDGETS = [
+    "$500 - $1K", "$600 - $1.2K", "$800 - $1.5K", "$1K - $2K",
+    "$1.2K - $2.5K", "$1.5K - $3K", "$2K - $4K", "$2.5K - $5K",
+    "$700 - $1.5K", "$900 - $1.8K", "$1.1K - $2.2K", "$1.8K - $3.5K",
+];
+
+const SAMPLE_JOBS = Array.from({ length: 108 }, (_, i) => ({
+    title: JOB_TITLES[i % JOB_TITLES.length],
+    budget: JOB_BUDGETS[i % JOB_BUDGETS.length],
+    location: JOB_LOCATIONS[i % JOB_LOCATIONS.length],
+    daysAgo: i % 5,
+}));
 
 const ASSETS_3D = [
     { title: "Living Room Furniture Pack", items: "45+ models" },
@@ -381,7 +411,7 @@ export default function PreviewPage() {
                             </div>
                             <button
                                 onClick={() => setShowForm(true)}
-                                className="w-full flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-widest text-white/70 bg-white/[0.06] border border-white/10 rounded-xl py-2.5 hover:bg-blue-500/10 hover:border-blue-500/20 hover:text-blue-400 transition-all"
+                                className="w-full flex items-center justify-center gap-2 text-[9px] font-black uppercase tracking-widest text-white bg-blue-600 rounded-xl py-2.5 hover:bg-blue-500 transition-all"
                             >
                                 <Lock className="h-3 w-3" />
                                 Members only — Apply
