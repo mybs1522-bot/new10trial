@@ -191,7 +191,7 @@ export default function PreviewPage() {
             <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <span className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground">Avada Academy</span>
+                        <span className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground">AVADA</span>
                     </div>
                     <button
                         onClick={() => setShowForm(true)}
