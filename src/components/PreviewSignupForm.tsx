@@ -5,8 +5,27 @@ import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement, useStri
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
-import { Loader2, User, Mail, Phone, ChevronDown, ArrowRight, Shield, CreditCard } from "lucide-react";
+import { Loader2, User, Mail, Phone, ChevronDown, ArrowRight, Shield, CreditCard, Users } from "lucide-react";
 import { COUNTRY_CODES, detectCountryCode } from "@/data/countryCodes";
+
+function useMemberCount() {
+    const [count, setCount] = useState(10834);
+    useEffect(() => {
+        const KEY = "avada_member_count";
+        const stored = localStorage.getItem(KEY);
+        let current: number;
+        if (stored) {
+            current = parseInt(stored, 10);
+            const bump = Math.random() < 0.5 ? 1 : 2;
+            current += bump;
+        } else {
+            current = 10834;
+        }
+        localStorage.setItem(KEY, String(current));
+        setCount(current);
+    }, []);
+    return count;
+}
 
 const stripePromise = loadStripe("pk_live_51PRJCsGGsoQTkhyv6OrT4zvnaaB5Y0MSSkTXi0ytj33oygsfW3dcu6aOFa9q3dr2mXYTCJErnFQJcOcyuDAsQd4B00lIAdclbB");
 
@@ -28,6 +47,7 @@ function InnerForm() {
     const navigate = useNavigate();
     const { toast } = useToast();
     const { markPaid } = useAuth();
+    const memberCount = useMemberCount();
 
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState<"details" | "card">("details");
@@ -194,6 +214,16 @@ function InnerForm() {
 
     return (
         <div className="max-w-md mx-auto">
+            {/* Community indicator */}
+            <div className="flex items-center justify-center gap-3 mb-5 py-2.5 px-4 rounded-xl bg-accent/[0.04] border border-accent/10">
+                <div className="flex items-center gap-1.5">
+                    <Users className="h-3.5 w-3.5 text-accent/60" />
+                    <span className="text-[11px] font-semibold text-foreground/70">{memberCount.toLocaleString()}+ members</span>
+                </div>
+                <span className="text-muted-foreground/30 text-[10px]">·</span>
+                <span className="text-[11px] font-semibold text-foreground/70">$10/mo</span>
+            </div>
+
             {/* Step indicators */}
             <div className="flex items-center gap-3 mb-6">
                 <div className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-widest ${step === "details" ? "text-accent" : "text-muted-foreground/40"}`}>
