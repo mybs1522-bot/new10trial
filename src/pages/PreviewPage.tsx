@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, BookOpen, Briefcase, Layers, ArrowRight, X, ChevronUp } from "lucide-react";
 import courseAutocad from "@/assets/course-autocad.jpg";
@@ -68,6 +68,37 @@ const sectionVariants = {
 export default function PreviewPage() {
     const [showForm, setShowForm] = useState(false);
     const topRef = useRef<HTMLDivElement>(null);
+
+    // Evergreen countdown timer (resets from localStorage)
+    const getInitialSeconds = () => {
+        try {
+            const stored = localStorage.getItem("preview_timer");
+            if (stored) {
+                const remaining = Math.floor((JSON.parse(stored) - Date.now()) / 1000);
+                if (remaining > 0) return remaining;
+            }
+        } catch { }
+        const secs = 3 * 3600 + 23 * 60 + 32;
+        localStorage.setItem("preview_timer", JSON.stringify(Date.now() + secs * 1000));
+        return secs;
+    };
+    const [timeLeft, setTimeLeft] = useState(getInitialSeconds);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimeLeft((prev) => {
+                if (prev <= 1) {
+                    const secs = 3 * 3600 + 23 * 60 + 32;
+                    localStorage.setItem("preview_timer", JSON.stringify(Date.now() + secs * 1000));
+                    return secs;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+    const tH = String(Math.floor(timeLeft / 3600)).padStart(2, "0");
+    const tM = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, "0");
+    const tS = String(timeLeft % 60).padStart(2, "0");
 
     const SECTIONS = [
         {
@@ -348,17 +379,31 @@ export default function PreviewPage() {
                         className="fixed bottom-0 left-0 right-0 z-40 pb-safe"
                     >
                         <div className="bg-background/90 backdrop-blur-xl border-t border-white/5">
-                            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-4">
-                                <div className="hidden sm:block">
-                                    <p className="text-xs font-black text-foreground uppercase tracking-tight">3-Day Free Trial</p>
-                                    <p className="text-[10px] font-medium text-muted-foreground">Full access to everything above. Cancel anytime.</p>
+                            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2 sm:py-3">
+                                {/* Timer */}
+                                <div className="flex items-center justify-center gap-1.5 mb-2">
+                                    <span className="text-[9px] font-bold text-muted-foreground/60 uppercase tracking-widest">Offer expires in</span>
+                                    <div className="flex items-center gap-1">
+                                        <span className="bg-foreground/5 text-foreground text-[11px] font-black px-1.5 py-0.5 rounded-md tracking-wider">{tH}</span>
+                                        <span className="text-muted-foreground/40 text-[10px] font-bold">:</span>
+                                        <span className="bg-foreground/5 text-foreground text-[11px] font-black px-1.5 py-0.5 rounded-md tracking-wider">{tM}</span>
+                                        <span className="text-muted-foreground/40 text-[10px] font-bold">:</span>
+                                        <span className="bg-foreground/5 text-foreground text-[11px] font-black px-1.5 py-0.5 rounded-md tracking-wider">{tS}</span>
+                                    </div>
                                 </div>
-                                <button
-                                    onClick={() => setShowForm(true)}
-                                    className="btn-gold w-full sm:w-auto px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-gold-lg hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
-                                >
-                                    Start Your 3-Day Free Trial <ArrowRight className="h-4 w-4" />
-                                </button>
+                                {/* CTA row */}
+                                <div className="flex items-center justify-between gap-4">
+                                    <div className="hidden sm:block">
+                                        <p className="text-xs font-black text-foreground uppercase tracking-tight">3-Day Free Trial</p>
+                                        <p className="text-[10px] font-medium text-muted-foreground">Full access to everything above. Cancel anytime.</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setShowForm(true)}
+                                        className="btn-gold w-full sm:w-auto px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-gold-lg hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                                    >
+                                        Start Your 3-Day Free Trial <ArrowRight className="h-4 w-4" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

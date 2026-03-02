@@ -312,9 +312,22 @@ function InnerForm() {
                         &larr; Back to details
                     </button>
 
-                    <div className="bg-muted/10 rounded-xl p-3 border border-white/5 mb-4">
+                    <div className="bg-muted/10 rounded-xl p-3 border border-white/5 mb-3">
                         <p className="text-[11px] font-bold text-foreground">{form.full_name}</p>
                         <p className="text-[10px] text-muted-foreground">{form.email} - {countryCode} {form.phone}</p>
+                    </div>
+
+                    {/* Pricing tier */}
+                    <div className="rounded-xl border border-accent/20 bg-accent/5 p-4 mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-black text-accent uppercase tracking-widest">3-Day Free Trial</span>
+                            <span className="text-lg font-black text-accent">$0</span>
+                        </div>
+                        <div className="h-px bg-accent/10 mb-2" />
+                        <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Then after trial</span>
+                            <span className="text-sm font-black text-foreground">$10<span className="text-[10px] font-bold text-muted-foreground">/month</span></span>
+                        </div>
                     </div>
 
                     {/* Card Number */}
