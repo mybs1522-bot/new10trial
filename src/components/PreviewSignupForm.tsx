@@ -370,12 +370,12 @@ function InnerForm() {
                         )}
                     </button>
 
-                    <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-muted-foreground/30 uppercase tracking-[0.08em]">
+                    <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-muted-foreground/70 uppercase tracking-[0.08em]">
                         <Shield className="h-3 w-3" />
                         256-bit SSL encrypted - Cancel anytime
                     </div>
 
-                    <p className="text-center text-[10px] text-muted-foreground/50 leading-relaxed">
+                    <p className="text-center text-[10px] text-muted-foreground/80 leading-relaxed">
                         Free for 3 days, then $10/month. Cancel anytime from your dashboard. No hidden charges.
                     </p>
                 </form>
