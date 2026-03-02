@@ -13,7 +13,6 @@ import bookStudy from "@/assets/book-study.jpg";
 import bookBedroom from "@/assets/book-bedroom.jpg";
 import bookLiving from "@/assets/book-living.jpg";
 import bookElevations from "@/assets/book-elevations.jpg";
-import logo from "@/assets/logo.png";
 import { PreviewSignupForm } from "@/components/PreviewSignupForm";
 
 const COURSES = [
@@ -165,7 +164,6 @@ export default function PreviewPage() {
             <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-white/5">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <img src={logo} alt="Avada" className="h-7 w-7" />
                         <span className="text-[11px] font-black uppercase tracking-[0.15em] text-foreground">Avada Academy</span>
                     </div>
                     <button
