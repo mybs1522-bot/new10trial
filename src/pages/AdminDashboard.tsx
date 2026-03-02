@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import {
   Users, Calendar, Briefcase, MessageSquare, Award, BookOpen,
   Plus, Trash2, Send, Shield, LogOut,
-  CheckSquare, Lock, Unlock, Mail, Zap, Pencil, Check, X, Loader2
+  CheckSquare, Lock, Unlock, Mail, Zap, Pencil, Check, X, Loader2, MessageCircle
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -186,6 +186,36 @@ export default function AdminDashboard() {
       setStudents((prev) => prev.map((s) => s.id === studentId ? { ...s, has_paid: !hasPaid } : s));
       toast({ title: hasPaid ? "Access revoked" : "Access granted ✅" });
     }
+  };
+
+  const sendWhatsAppReminder = (student: Student) => {
+    const digits = (student.phone || "").replace(/[^0-9]/g, "");
+    if (!digits) {
+      toast({ title: "No phone number", description: "This student doesn't have a phone number on file.", variant: "destructive" });
+      return;
+    }
+    const firstName = student.full_name?.trim().split(" ")[0] || "there";
+    const message = `Hey ${firstName}! 👋
+
+🔥 Quick update from *Avada Academy* —
+
+We just dropped *2 brand-new courses*:
+✅ AI Rendering Tools
+✅ Client Workflow & Management
+
+Students who enrolled this month are already landing $500–$2,000 projects. 🚀
+
+We're running a *3-day FREE trial* right now — full access to all 6 courses, 6 design books, freelance job board & certificates.
+
+💰 After trial: just $10/mo (cancel anytime)
+
+⏳ Trial spots are limited this week.
+
+👉 Start free now: https://www.avadaacademy.com
+
+Don't wait — your first client could be 2 weeks away! 🎯`;
+
+    window.open(`https://wa.me/${digits}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const addVisit = async () => {
@@ -554,6 +584,7 @@ export default function AdminDashboard() {
                       <th className="text-left px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Training Mode</th>
                       <th className="text-left px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground">Activation Date</th>
                       <th className="text-left px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground text-right">Access Level</th>
+                      <th className="text-left px-6 py-4 text-[10px] font-black uppercase tracking-widest text-muted-foreground text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/[0.02]">
@@ -591,6 +622,15 @@ export default function AdminDashboard() {
                             )}
                           >
                             {s.has_paid ? <><Unlock className="h-3 w-3" />Active Access</> : <><Lock className="h-3 w-3" />Locked Status</>}
+                          </button>
+                        </td>
+                        <td className="px-6 py-5 text-center">
+                          <button
+                            onClick={() => sendWhatsAppReminder(s)}
+                            title={`Send WhatsApp reminder to ${s.full_name}`}
+                            className="inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all border-t bg-[#25D366]/5 text-[#25D366] border-[#25D366]/20 hover:bg-[#25D366]/15 hover:scale-105"
+                          >
+                            <MessageCircle className="h-3 w-3" />WhatsApp
                           </button>
                         </td>
                       </tr>
