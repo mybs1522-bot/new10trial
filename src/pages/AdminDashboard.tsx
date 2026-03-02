@@ -90,6 +90,21 @@ export default function AdminDashboard() {
   const [dripEdit, setDripEdit] = useState<{ subject: string; html: string }>({ subject: "", html: "" });
   const [dripLoading, setDripLoading] = useState(false);
 
+  // WhatsApp follow-up tracking
+  const [waSent, setWaSent] = useState<Record<string, number[]>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("wa_followups") || "{}");
+    } catch { return {}; }
+  });
+
+  const markWaSent = (studentId: string, step: number) => {
+    setWaSent((prev) => {
+      const updated = { ...prev, [studentId]: [...(prev[studentId] || []), step] };
+      localStorage.setItem("wa_followups", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
 
   useEffect(() => {
     if (!loading && !isAdmin) navigate("/dashboard");
@@ -188,28 +203,53 @@ export default function AdminDashboard() {
     }
   };
 
-  const sendWhatsAppReminder = (student: Student) => {
+  const WA_MESSAGES = [
+    (name: string) => `Hey ${name}
+
+You signed up at start.avadalearn.com but haven't started your 3-day free trial yet.
+
+We just added new AI courses that help you create renders exactly like your own design concepts - faster and client-ready.
+
+Plus, you get access to complete Interior Design books covering living room, kitchen, bedroom, washroom, exterior - every major space in detail.
+
+If you're serious about upgrading your design game, don't leave this unused.
+
+Activate your 3-day trial here - https://start.avadalearn.com
+
+Need help getting started? Just reply here and I'll assist you.`,
+
+    (name: string) => `Hi ${name}, just checking in.
+
+I noticed you still haven't activated your free trial. No pressure at all, but I wanted to make sure you didn't miss it.
+
+You get full access to all 6 courses, the design books, and the freelance job board for 3 days - completely free.
+
+A lot of students tell me they wish they started sooner. If there's anything stopping you or if you have questions, just reply here.
+
+Here's the link again - https://start.avadalearn.com`,
+
+    (name: string) => `Hey ${name}, last message from me on this.
+
+Your free trial spot is still open but I won't be following up again after this.
+
+If interior design is something you want to pursue seriously, this is probably the easiest way to start. 3 days, full access, no commitment.
+
+If not, no worries at all. I wish you the best either way.
+
+https://start.avadalearn.com`,
+  ];
+
+  const sendWhatsAppFollowup = (student: Student, step: number) => {
     const digits = (student.phone || "").replace(/[^0-9]/g, "");
     if (!digits) {
       toast({ title: "No phone number", description: "This student doesn't have a phone number on file.", variant: "destructive" });
       return;
     }
     const firstName = student.full_name?.trim().split(" ")[0] || "";
-    const message = `Hey ${firstName} 👋
-
-You signed up at start.avadalearn.com but haven't started your 3-day free trial yet.
-
-We just added new AI courses that help you create renders exactly like your own design concepts — faster and client-ready.
-
-Plus, you get access to complete Interior Design books covering living room, kitchen, bedroom, washroom, exterior — every major space in detail.
-
-If you're serious about upgrading your design game, don't leave this unused.
-
-Activate your 3-day trial here 👉 https://start.avadalearn.com
-
-Need help getting started? Just reply here — I'll assist you. 🚀`;
-
+    const message = WA_MESSAGES[step - 1](firstName);
     window.open(`https://wa.me/${digits}?text=${encodeURIComponent(message)}`, "_blank");
+    markWaSent(student.id, step);
+    toast({ title: `Follow-up ${step} opened for ${student.full_name}` });
   };
 
   const addVisit = async () => {
@@ -619,13 +659,25 @@ Need help getting started? Just reply here — I'll assist you. 🚀`;
                           </button>
                         </td>
                         <td className="px-6 py-5 text-center">
-                          <button
-                            onClick={() => sendWhatsAppReminder(s)}
-                            title={`Send WhatsApp reminder to ${s.full_name}`}
-                            className="inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full transition-all border-t bg-[#25D366]/5 text-[#25D366] border-[#25D366]/20 hover:bg-[#25D366]/15 hover:scale-105"
-                          >
-                            <MessageCircle className="h-3 w-3" />WhatsApp
-                          </button>
+                          <div className="flex items-center gap-1.5 justify-center">
+                            {[1, 2, 3].map((step) => {
+                              const sent = waSent[s.id]?.includes(step);
+                              if (sent) return null;
+                              return (
+                                <button
+                                  key={step}
+                                  onClick={() => sendWhatsAppFollowup(s, step)}
+                                  title={`Send follow-up ${step} to ${s.full_name}`}
+                                  className="inline-flex items-center gap-1.5 text-[8px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full transition-all border-t bg-[#25D366]/5 text-[#25D366] border-[#25D366]/20 hover:bg-[#25D366]/15 hover:scale-105"
+                                >
+                                  <MessageCircle className="h-2.5 w-2.5" />{step}
+                                </button>
+                              );
+                            })}
+                            {waSent[s.id]?.length === 3 && (
+                              <span className="text-[8px] font-black text-muted-foreground/40 uppercase tracking-widest">All sent</span>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}
