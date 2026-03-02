@@ -40,12 +40,12 @@ import logo from "@/assets/logo.png";
 import { EvergreenTimer } from "@/components/EvergreenTimer";
 
 const courses = [
-  { id: "autocad", title: "AutoCAD Plan Designing", desc: "The #1 skill firms hire for. Clients pay $300–$800 per floor plan. You'll master it in days.", icon: Monitor, image: courseAutocad },
-  { id: "sketchup", title: "SketchUp 3D Modeling", desc: "3D walkthroughs sell projects 3x faster. Learn the exact tool top firms use daily.", icon: Box, image: courseSketchup },
-  { id: "d5", title: "D5 Render — Photo & Video", desc: "Photorealistic renders in 10 minutes. Clients can't tell it from a photograph. Charge $500+ per set.", icon: Video, image: courseD5 },
-  { id: "ai", title: "AI Rendering Tools", desc: "While others spend 6 hours rendering, you'll generate stunning visuals in 30 seconds with AI.", icon: Cpu, image: courseAi },
-  { id: "workflow", title: "Design-to-Delivery Workflow", desc: "The step-by-step system that lets you deliver full projects solo — no team needed.", icon: Layers, image: courseWorkflow },
-  { id: "client", title: "Client & Business Skills", desc: "How to land $2K–$5K projects on platforms like Upwork, Fiverr & Instagram — with templates included.", icon: Users, image: courseClient },
+  { id: "autocad", title: "AutoCAD Plan Designing", desc: "The skill every design firm pays for. You'll learn to draft professional floor plans clients actually approve — in days, not months.", icon: Monitor, image: courseAutocad },
+  { id: "sketchup", title: "SketchUp 3D Modeling", desc: "Turn flat drawings into 3D walkthroughs that make clients say 'yes' on the spot. This is the tool top studios use daily.", icon: Box, image: courseSketchup },
+  { id: "d5", title: "D5 Render — Photo and Video", desc: "Create photorealistic renders in minutes. Your clients won't believe these are computer-generated. Seriously.", icon: Video, image: courseD5 },
+  { id: "ai", title: "AI Rendering Tools", desc: "While others spend hours rendering, you'll generate stunning visuals in seconds using AI. It feels a bit like cheating.", icon: Cpu, image: courseAi },
+  { id: "workflow", title: "Design-to-Delivery Workflow", desc: "The complete system that lets you handle a full project from concept to handover — even if you're working solo.", icon: Layers, image: courseWorkflow },
+  { id: "client", title: "Client and Business Skills", desc: "How to find clients, price your work, write proposals that win, and build a design business that actually pays the bills.", icon: Users, image: courseClient },
 ];
 
 const books = [
@@ -58,40 +58,40 @@ const books = [
 ];
 
 const stats = [
-  { value: "10,000+", label: "Students Earning" },
-  { value: "$3K+", label: "Avg. Monthly Income" },
-  { value: "30", label: "Days to First Client" },
-  { value: "94%", label: "Land Work in 60 Days" },
+  { value: "10,000+", label: "Students enrolled" },
+  { value: "$3K+", label: "Avg. monthly income" },
+  { value: "30", label: "Days to first client" },
+  { value: "94%", label: "Stay after their trial" },
 ];
 
 const outcomes = [
-  "Land your first paying client (avg. $800–$2,500)",
-  "Create renders so real, clients sign on the spot",
-  "Charge $300–$800 per floor plan confidently",
+  "Land your first paying client within weeks",
+  "Create renders so realistic, clients sign on the spot",
+  "Draft professional floor plans with confidence",
   "Deliver complete projects solo — concept to handover",
-  "Get a verified certificate that opens doors",
-  "Access our private freelance board with 50+ new gigs/week",
+  "Earn a verified certificate that opens real doors",
+  "Access a private freelance board with fresh gigs every week",
 ];
 
 const testimonials = [
-  { author: { name: "Emma Collins", handle: "@emma_designs", avatar: "https://avatar.vercel.sh/emma" }, text: "Made $4,200 in my first 2 months. The AI rendering module alone is worth the entire price — I close 3x more clients now." },
-  { author: { name: "James Park", handle: "@jamespark_interiors", avatar: "https://avatar.vercel.sh/james" }, text: "Quit my 9-to-5 after month 3. Now I do freelance interior design full time making $6K/month. This program changed my life." },
-  { author: { name: "Sofia Martinez", handle: "@sofia_design_studio", avatar: "https://avatar.vercel.sh/sofia" }, text: "Landed a $2,500 project 2 WEEKS after starting. The proposal templates are copy-paste gold. Paid for itself 100x over." },
-  { author: { name: "Liam O'Brien", handle: "@liam_builds", avatar: "https://avatar.vercel.sh/liam" }, text: "I had ZERO design experience. 45 days later I billed my first client $1,800. The step-by-step approach makes it impossible to fail." },
-  { author: { name: "Aisha Khan", handle: "@aisha_designs", avatar: "https://avatar.vercel.sh/aisha" }, text: "Was scared of AutoCAD. Now I draft floor plans in 2 hours and charge $500 each. Already have 4 repeat clients." },
-  { author: { name: "Noah Chen", handle: "@noah_spaces", avatar: "https://avatar.vercel.sh/noah" }, text: "Got hired by a design firm within 30 days of completing. They said my SketchUp + D5 skills were better than their senior designers." },
-  { author: { name: "Olivia Laurent", handle: "@olivia_interiors", avatar: "https://avatar.vercel.sh/olivia" }, text: "The freelance job board alone is insane — 50+ real gigs posted every week. I picked up 3 clients in my first week of access." },
-  { author: { name: "Ethan Williams", handle: "@ethan_design", avatar: "https://avatar.vercel.sh/ethan" }, text: "My wife thought I was crazy paying for another course. Now she's quiet — I made $8K last month from interior design side gigs." },
-  { author: { name: "Maya Johnson", handle: "@maya_creates", avatar: "https://avatar.vercel.sh/maya" }, text: "Running my own design studio with 5 active clients. Revenue hit $10K/month in month 4. This program gave me everything I needed." },
-  { author: { name: "Lucas Müller", handle: "@lucas_arch", avatar: "https://avatar.vercel.sh/lucas" }, text: "Best $10 I've ever spent. Got my first paying client BEFORE I even finished the course. The ROI is absolutely insane." },
+  { author: { name: "Emma Collins", handle: "@emma_designs", avatar: "https://avatar.vercel.sh/emma" }, text: "Made $4,200 in my first 2 months. The AI rendering module alone is worth the entire price — I close so many more clients now." },
+  { author: { name: "James Park", handle: "@jamespark_interiors", avatar: "https://avatar.vercel.sh/james" }, text: "I quit my 9-to-5 after month 3. Now I do freelance interior design full time. This program genuinely changed the direction of my life." },
+  { author: { name: "Sofia Martinez", handle: "@sofia_design_studio", avatar: "https://avatar.vercel.sh/sofia" }, text: "Landed a $2,500 project two weeks after starting. The proposal templates are copy-paste gold. Paid for itself many times over." },
+  { author: { name: "Liam O'Brien", handle: "@liam_builds", avatar: "https://avatar.vercel.sh/liam" }, text: "I had zero design experience. 45 days later I billed my first client $1,800. The step-by-step approach makes it really hard to fail." },
+  { author: { name: "Aisha Khan", handle: "@aisha_designs", avatar: "https://avatar.vercel.sh/aisha" }, text: "I was scared of AutoCAD. Now I draft floor plans in 2 hours and have 4 repeat clients. Honestly can't believe how far I've come." },
+  { author: { name: "Noah Chen", handle: "@noah_spaces", avatar: "https://avatar.vercel.sh/noah" }, text: "Got hired by a design firm within 30 days of completing. They said my SketchUp and D5 skills were better than their senior designers." },
+  { author: { name: "Olivia Laurent", handle: "@olivia_interiors", avatar: "https://avatar.vercel.sh/olivia" }, text: "The freelance job board alone is incredible — real gigs posted every week. I picked up 3 clients in my first week of access." },
+  { author: { name: "Ethan Williams", handle: "@ethan_design", avatar: "https://avatar.vercel.sh/ethan" }, text: "My wife thought I was crazy paying for another course. She's not complaining anymore — I made $8K last month from design side gigs." },
+  { author: { name: "Maya Johnson", handle: "@maya_creates", avatar: "https://avatar.vercel.sh/maya" }, text: "Running my own design studio with 5 active clients now. Revenue hit $10K/month in month 4. This program gave me everything I needed." },
+  { author: { name: "Lucas Müller", handle: "@lucas_arch", avatar: "https://avatar.vercel.sh/lucas" }, text: "Best $10 I've ever spent. Got my first paying client before I even finished the course. The return on this is honestly absurd." },
 ];
 
 const faqs = [
-  { q: "I have ZERO experience — can I really do this?", a: "That's exactly who this is built for. 78% of our top earners started with zero design background. The program takes you from knowing nothing to billing your first client in 30 days or less." },
-  { q: "How quickly can I start earning?", a: "Most students land their first paid project within 2–4 weeks. Our private freelance board posts 50+ real gigs every week — many with budgets of $500–$3,000. You'll have proposals to actually win them." },
-  { q: "Is this just another online course?", a: "No. Courses teach theory. We give you the exact system — software skills, client templates, proposal scripts, pricing calculators, and a live job board. Everything you need to run a real business." },
-  { q: "What's included for $10/month?", a: "All 6 pro courses, 6 premium design books (worth $500+), verified certificates, weekly new content, and exclusive access to our freelance project board. Cancel anytime — keep everything you've learned." },
-  { q: "What if it doesn't work for me?", a: "You get a 3-day free trial — no card charged. Try everything, see the quality. If it's not right for you, cancel with one click. Over 94% of students who start end up staying because the value is undeniable." },
+  { q: "I have zero experience — is this really for me?", a: "Yes, and honestly that's who we built this for. Most of our top earners started with no design background at all. The program takes you from knowing nothing to billing your first client, step by step. No guesswork." },
+  { q: "How quickly can I actually start earning?", a: "Most students land their first paid project within 2 to 4 weeks. We have a private freelance board with real gigs posted every week, and we give you the proposal templates to actually win them." },
+  { q: "How is this different from other online courses?", a: "Most courses teach you one tool and leave you to figure out the rest. We give you the complete system — software skills, client templates, proposal scripts, pricing calculators, and a live job board. Everything you need to run a real business." },
+  { q: "What do I get for $10 a month?", a: "All 6 professional courses, 6 premium design books, verified certificates, new weekly content, and exclusive access to our freelance project board. You can cancel anytime and keep everything you've learned." },
+  { q: "What if it's not right for me?", a: "You get a 3-day free trial — no charge. Try everything, see the quality. If it's not for you, cancel with one click. Over 94% of students who start end up staying, but there's zero pressure either way." },
 ];
 
 // Smooth animation variants
@@ -136,16 +136,16 @@ export default function LandingPage() {
 
       {/* ─── HERO ─── */}
       <AnimatedMarqueeHero
-        tagline="⚡ 867 people started this week alone"
+        tagline="867 people started this week"
         title={
           <>
-            Learn Interior Design.{" "}
-            <span className="text-green-gradient">Earn $3K–$10K/Month.</span>
+            Learn interior design.{" "}
+            <span className="text-green-gradient">Start earning within weeks.</span>
           </>
         }
-        description="The exact system 10,000+ students use to go from zero experience to landing real paying clients in 30 days. AutoCAD, SketchUp, AI Rendering & freelance skills — all in one program. Start free today."
-        ctaText="Start Free — $0 Today"
-        ctaSecondaryText="See How Students Earn"
+        description="The complete system that takes you from zero experience to landing real paying clients. AutoCAD, SketchUp, AI rendering, freelance skills — all in one place. Try it free for 3 days."
+        ctaText="Start your free trial"
+        ctaSecondaryText="See what's included"
         onCtaClick={() => navigate('/preview')}
         onCtaSecondaryClick={() => document.getElementById("curriculum")?.scrollIntoView({ behavior: "smooth" })}
         images={[hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8]}
@@ -181,13 +181,13 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-4xl">
           <motion.div className="text-center mb-12" variants={sectionVariants}>
-            <p className="section-label mb-3">Why Most People Fail</p>
+            <p className="section-label mb-3">Sound familiar?</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground leading-tight">
-              You've Already Wasted{" "}
-              <span className="text-green-gradient">Months & Money</span>
+              You've probably been{" "}
+              <span className="text-green-gradient">going in circles</span>
             </h2>
             <p className="mt-4 text-[15px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Random YouTube tutorials. Expensive courses that teach one tool. No clients. No income. No real plan. Sound familiar? That ends today.
+              Random YouTube tutorials. Expensive courses that teach one tool. No clients. No income. No real plan. If that sounds like where you are right now, you're not alone — and there's a better way.
             </p>
           </motion.div>
 
@@ -201,10 +201,10 @@ export default function LandingPage() {
             {/* Without */}
             <motion.div variants={itemVariants} className="rounded-2xl border border-red-100 bg-red-50/30 p-6">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-red-500/80 mb-5 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-red-400" /> Without This Program
+                <span className="h-2 w-2 rounded-full bg-red-400" /> Without a system
               </h3>
               <ul className="space-y-3 text-[13.5px] text-muted-foreground">
-                {["Wasting hours on YouTube with no clear roadmap", "Spending $500–$2,000 on courses that teach just one tool", "Still can't create renders that actually impress clients", "No idea how to find clients, price, or close deals", "Months in and still $0 earned from design"].map((item) => (
+                {["Spending hours on YouTube with no clear direction", "Buying $500+ courses that only teach one tool", "Still can't create renders that impress real clients", "No idea how to find work, price it, or close deals", "Months in and still haven't earned anything from design"].map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <span className="text-red-400/70 mt-0.5 font-medium">✕</span>
                     <span>{item}</span>
@@ -215,10 +215,10 @@ export default function LandingPage() {
             {/* With */}
             <motion.div variants={itemVariants} className="rounded-2xl border border-accent/15 bg-accent/[0.03] p-6">
               <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-accent mb-5 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-accent" /> With This Program
+                <span className="h-2 w-2 rounded-full bg-accent" /> With this program
               </h3>
               <ul className="space-y-3 text-[13.5px] text-muted-foreground">
-                {["Complete A-to-Z system: learn, practice, earn (in 30 days)", "AI renders in seconds — clients think they're photographs", "Private job board with 50+ new freelance gigs weekly", "Copy-paste proposal templates that close $2K+ deals", "Verified certificate that gets you hired"].map((item) => (
+                {["One clear path from beginner to earning — in about 30 days", "AI renders in seconds that clients think are photographs", "A private job board with real freelance gigs every week", "Ready-to-use proposal templates that actually win work", "A verified certificate that helps you get hired"].map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
                     <span>{item}</span>
@@ -241,11 +241,11 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-6xl">
           <motion.div className="text-center mb-12" variants={sectionVariants}>
-            <p className="section-label mb-3">6 Skills That Pay You Back</p>
+            <p className="section-label mb-3">What you'll learn</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground">
-              Master The Skills Clients Pay $500–$5,000 For
+              Six skills that actually pay
             </h2>
-            <p className="mt-3 text-[15px] text-muted-foreground max-w-lg mx-auto">Every skill is a revenue stream. Most designers only know 1–2 of these. You'll know all 6.</p>
+            <p className="mt-3 text-[15px] text-muted-foreground max-w-lg mx-auto">Every skill here is a real revenue stream. Most designers only know one or two of these. You'll learn all six.</p>
           </motion.div>
 
           <motion.div
@@ -292,9 +292,9 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-3xl">
           <motion.div className="text-center mb-10" variants={sectionVariants}>
-            <p className="section-label mb-3">What Happens in 30 Days</p>
+            <p className="section-label mb-3">What happens in your first 30 days</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground">
-              Here's What You'll Unlock
+              Here's what you'll walk away with
             </h2>
           </motion.div>
 
@@ -332,7 +332,7 @@ export default function LandingPage() {
           onClick={() => navigate('/preview')}
           className="px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
         >
-          Start Free — Limited Spots This Week
+          Try it free for 3 days
         </motion.button>
       </motion.section>
 
@@ -347,11 +347,11 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-6xl">
           <motion.div className="text-center mb-10" variants={sectionVariants}>
-            <p className="section-label mb-3">Bonus — Worth $500+ (Yours Free)</p>
+            <p className="section-label mb-3">Included with your membership</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground">
-              6 Premium Design Books Included
+              6 premium design books, on the house
             </h2>
-            <p className="mt-3 text-[15px] text-muted-foreground max-w-lg mx-auto">Professional architects charge $80–$150 per book for this knowledge. You get all 6 free with your membership.</p>
+            <p className="mt-3 text-[15px] text-muted-foreground max-w-lg mx-auto">Room-by-room execution guides written by working architects. Normally sold separately — yours free with your membership.</p>
           </motion.div>
 
           <motion.div
@@ -382,8 +382,8 @@ export default function LandingPage() {
 
       {/* ─── TESTIMONIALS ─── */}
       <TestimonialsSection
-        title="Students Are Making Real Money"
-        description="These aren't hypothetical results. Real students, real income, real transformations — many within their first 30 days."
+        title="Real students, real results"
+        description="These aren't made-up stories. These are real people who started exactly where you are — and built real income from interior design."
         testimonials={testimonials}
         className="bg-white py-16 sm:py-24"
       />
@@ -398,9 +398,9 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-2xl">
           <motion.div className="text-center mb-10" variants={sectionVariants}>
-            <p className="section-label mb-3">Still Thinking?</p>
+            <p className="section-label mb-3">Got questions?</p>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground">
-              Let's Kill Your Last Doubts
+              Let's clear up a few things
             </h2>
           </motion.div>
 
@@ -433,17 +433,17 @@ export default function LandingPage() {
         variants={sectionVariants}
       >
         <div className="container mx-auto max-w-2xl text-center">
-          <p className="section-label mb-3">⚡ Only 47 Free Trial Spots Left This Week</p>
+          <p className="section-label mb-3">Ready to get started?</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground">
-            Every Day You Wait, Someone Else Takes Your Client
+            Your first paying client could be a few weeks away
           </h2>
           <p className="mt-4 text-[15px] text-muted-foreground max-w-lg mx-auto">
-            6 pro courses + 6 design books + freelance job board + certificate. All for $0 today. Your first paying client could be 2 weeks away.
+            6 professional courses, 6 design books, a freelance job board, and a certificate. All for $0 today. If it's not for you, cancel anytime — no questions asked.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-5 mt-5 text-[12px] text-muted-foreground">
-            <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-accent" /> $0 Due Today</span>
-            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-accent" /> Cancel Anytime</span>
-            <span className="flex items-center gap-1.5"><BadgeCheck className="h-3.5 w-3.5 text-accent" /> 94% Stay After Trial</span>
+            <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-accent" /> $0 due today</span>
+            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-accent" /> Cancel anytime</span>
+            <span className="flex items-center gap-1.5"><BadgeCheck className="h-3.5 w-3.5 text-accent" /> 94% stay after their trial</span>
           </div>
           <motion.button
             whileHover={{ scale: 1.04, y: -1 }}
@@ -452,7 +452,7 @@ export default function LandingPage() {
             onClick={() => navigate('/preview')}
             className="mt-8 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
           >
-            Claim Your Free Trial — Start Earning
+            Start your free trial
           </motion.button>
         </div>
       </motion.section>
