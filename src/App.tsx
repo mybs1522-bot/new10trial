@@ -20,6 +20,7 @@ import PaymentPage from "./pages/PaymentPage";
 import StartCourseTab from "./pages/dashboard/StartCourseTab";
 import ProfileTab from "./pages/dashboard/ProfileTab";
 import NotFound from "./pages/NotFound";
+import PreviewPage from "./pages/PreviewPage";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/preview" element={<PreviewPage />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/dashboard" element={<ProtectedRoute><StudentDashboard /></ProtectedRoute>} />
             <Route path="/dashboard/start" element={<ProtectedRoute><StartCourseTab /></ProtectedRoute>} />

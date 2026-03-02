@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useScrollFadeIn } from "@/hooks/useScrollFadeIn";
 import { EnrollmentForm } from "@/components/EnrollmentForm";
 import { Navbar } from "@/components/Navbar";
@@ -112,6 +113,7 @@ const itemVariants = {
 export default function LandingPage() {
   const scrollRef = useScrollFadeIn();
   const [enrollOpen, setEnrollOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const hideTawk = () => {
@@ -130,7 +132,7 @@ export default function LandingPage() {
 
   return (
     <div ref={scrollRef} className="min-h-screen bg-white overflow-x-hidden">
-      <Navbar onJoinClick={() => setEnrollOpen(true)} />
+      <Navbar onJoinClick={() => navigate('/preview')} />
 
       {/* ─── HERO ─── */}
       <AnimatedMarqueeHero
@@ -144,7 +146,7 @@ export default function LandingPage() {
         description="The exact system 10,000+ students use to go from zero experience to landing real paying clients in 30 days. AutoCAD, SketchUp, AI Rendering & freelance skills — all in one program. Start free today."
         ctaText="Start Free — $0 Today"
         ctaSecondaryText="See How Students Earn"
-        onCtaClick={() => setEnrollOpen(true)}
+        onCtaClick={() => navigate('/preview')}
         onCtaSecondaryClick={() => document.getElementById("curriculum")?.scrollIntoView({ behavior: "smooth" })}
         images={[hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8]}
       />
@@ -327,7 +329,7 @@ export default function LandingPage() {
           whileHover={{ scale: 1.04, y: -1 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          onClick={() => setEnrollOpen(true)}
+          onClick={() => navigate('/preview')}
           className="px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
         >
           Start Free — Limited Spots This Week
@@ -447,7 +449,7 @@ export default function LandingPage() {
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            onClick={() => setEnrollOpen(true)}
+            onClick={() => navigate('/preview')}
             className="mt-8 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
           >
             Claim Your Free Trial — Start Earning
@@ -474,7 +476,7 @@ export default function LandingPage() {
       </Dialog>
 
       {/* ─── TIMER ─── */}
-      <EvergreenTimer onCtaClick={() => setEnrollOpen(true)} />
+      <EvergreenTimer onCtaClick={() => navigate('/preview')} />
 
       {/* ─── FOOTER ─── */}
       <motion.footer
