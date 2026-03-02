@@ -194,26 +194,20 @@ export default function AdminDashboard() {
       toast({ title: "No phone number", description: "This student doesn't have a phone number on file.", variant: "destructive" });
       return;
     }
-    const firstName = student.full_name?.trim().split(" ")[0] || "there";
-    const message = `Hey ${firstName}! 👋
+    const firstName = student.full_name?.trim().split(" ")[0] || "";
+    const message = `Hey ${firstName} 👋
 
-🔥 Quick update from *Avada Academy* —
+You signed up at start.avadalearn.com but haven't started your 3-day free trial yet.
 
-We just dropped *2 brand-new courses*:
-✅ AI Rendering Tools
-✅ Client Workflow & Management
+We just added new AI courses that help you create renders exactly like your own design concepts — faster and client-ready.
 
-Students who enrolled this month are already landing $500–$2,000 projects. 🚀
+Plus, you get access to complete Interior Design books covering living room, kitchen, bedroom, washroom, exterior — every major space in detail.
 
-We're running a *3-day FREE trial* right now — full access to all 6 courses, 6 design books, freelance job board & certificates.
+If you're serious about upgrading your design game, don't leave this unused.
 
-💰 After trial: just $10/mo (cancel anytime)
+Activate your 3-day trial here 👉 https://start.avadalearn.com
 
-⏳ Trial spots are limited this week.
-
-👉 Start free now: https://www.avadaacademy.com
-
-Don't wait — your first client could be 2 weeks away! 🎯`;
+Need help getting started? Just reply here — I'll assist you. 🚀`;
 
     window.open(`https://wa.me/${digits}?text=${encodeURIComponent(message)}`, "_blank");
   };
