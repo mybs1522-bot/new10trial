@@ -223,7 +223,7 @@ export default function PreviewPage() {
                 variants={sectionVariants}
                 className="max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16"
             >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex flex-col items-center sm:flex-row sm:items-center gap-3 mb-6 text-center sm:text-left">
                     <div className="h-10 w-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                         <GraduationCap className="h-5 w-5 text-emerald-500" />
                     </div>
@@ -250,7 +250,7 @@ export default function PreviewPage() {
                                     {course.lessons} lessons
                                 </span>
                             </div>
-                            <div className="p-3 sm:p-4">
+                            <div className="p-3 sm:p-4 text-center sm:text-left">
                                 <h3 className="text-[11px] sm:text-xs font-black text-foreground uppercase tracking-tight mb-1 line-clamp-1">{course.title}</h3>
                                 <p className="text-[9px] sm:text-[10px] font-medium text-muted-foreground leading-relaxed line-clamp-2">{course.desc}</p>
                             </div>
@@ -259,12 +259,12 @@ export default function PreviewPage() {
                 </div>
 
                 {/* Coming this week */}
-                <div className="mt-5 rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-4">
-                    <div className="flex items-center gap-2 mb-3">
+                <div className="mt-5 rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-4 text-center sm:text-left">
+                    <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
                         <Clock className="h-3.5 w-3.5 text-emerald-500" />
                         <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">New courses coming this week</span>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                         {UPCOMING_COURSES.map((name) => (
                             <span key={name} className="text-[9px] sm:text-[10px] font-bold text-muted-foreground bg-foreground/[0.03] border border-white/5 px-2.5 py-1.5 rounded-lg">
                                 {name}
@@ -283,7 +283,7 @@ export default function PreviewPage() {
                 variants={sectionVariants}
                 className="max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16"
             >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex flex-col items-center sm:flex-row sm:items-center gap-3 mb-6 text-center sm:text-left">
                     <div className="h-10 w-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
                         <BookOpen className="h-5 w-5 text-amber-500" />
                     </div>
@@ -306,7 +306,7 @@ export default function PreviewPage() {
                             <div className="aspect-[4/3] overflow-hidden">
                                 <img src={book.image} alt={book.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                             </div>
-                            <div className="p-3 sm:p-4">
+                            <div className="p-3 sm:p-4 text-center sm:text-left">
                                 <h3 className="text-[11px] sm:text-xs font-black text-foreground uppercase tracking-tight mb-1 line-clamp-1">{book.title}</h3>
                                 <p className="text-[9px] sm:text-[10px] font-medium text-muted-foreground">Execution Guide - PDF</p>
                             </div>
@@ -315,12 +315,12 @@ export default function PreviewPage() {
                 </div>
 
                 {/* Coming this week */}
-                <div className="mt-5 rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-4">
-                    <div className="flex items-center gap-2 mb-3">
+                <div className="mt-5 rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-4 text-center sm:text-left">
+                    <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
                         <Clock className="h-3.5 w-3.5 text-amber-500" />
                         <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">New books coming this week</span>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                         {UPCOMING_BOOKS.map((name) => (
                             <span key={name} className="text-[9px] sm:text-[10px] font-bold text-muted-foreground bg-foreground/[0.03] border border-white/5 px-2.5 py-1.5 rounded-lg">
                                 {name}
@@ -339,7 +339,7 @@ export default function PreviewPage() {
                 variants={sectionVariants}
                 className="max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16"
             >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex flex-col items-center sm:flex-row sm:items-center gap-3 mb-6 text-center sm:text-left">
                     <div className="h-10 w-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
                         <Briefcase className="h-5 w-5 text-blue-500" />
                     </div>
@@ -388,7 +388,7 @@ export default function PreviewPage() {
                 variants={sectionVariants}
                 className="max-w-6xl mx-auto px-4 sm:px-6 mb-32 sm:mb-36"
             >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex flex-col items-center sm:flex-row sm:items-center gap-3 mb-6 text-center sm:text-left">
                     <div className="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
                         <Layers className="h-5 w-5 text-purple-500" />
                     </div>
