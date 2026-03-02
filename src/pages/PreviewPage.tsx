@@ -35,12 +35,12 @@ const BOOKS = [
 ];
 
 const SAMPLE_JOBS = [
-    { title: "Complete Interior Design for 2BHK Flat", budget: "3L - 6L", location: "Andheri West, Mumbai", daysAgo: 1 },
-    { title: "3BHK Flat - Scandinavian Style Interiors", budget: "6L - 12L", location: "Koramangala, Bangalore", daysAgo: 0 },
-    { title: "Luxury 4BHK Penthouse Interior Design", budget: "12L - 25L", location: "Banjara Hills, Hyderabad", daysAgo: 2 },
-    { title: "Restaurant Interior Design - 1800 sq ft", budget: "7L - 15L", location: "Connaught Place, Delhi", daysAgo: 1 },
-    { title: "Corporate Office Interior - 2000 sq ft", budget: "6L - 14L", location: "Hinjewadi, Pune", daysAgo: 0 },
-    { title: "Master Bedroom Design with Bathroom", budget: "2L - 4L", location: "Adyar, Chennai", daysAgo: 3 },
+    { title: "Complete Interior Design for 2-Bed Apartment", budget: "$4K - $8K", location: "Brooklyn, New York", daysAgo: 1 },
+    { title: "3-Bed Flat - Scandinavian Style Interiors", budget: "$8K - $15K", location: "Shoreditch, London", daysAgo: 0 },
+    { title: "Luxury Penthouse Interior Design", budget: "$15K - $30K", location: "Marina Bay, Singapore", daysAgo: 2 },
+    { title: "Restaurant Interior Design - 1800 sq ft", budget: "$9K - $18K", location: "Le Marais, Paris", daysAgo: 1 },
+    { title: "Corporate Office Interior - 2000 sq ft", budget: "$7K - $16K", location: "CBD, Sydney", daysAgo: 0 },
+    { title: "Master Bedroom Design with Bathroom", budget: "$3K - $6K", location: "Jumeirah, Dubai", daysAgo: 3 },
 ];
 
 const ASSETS_3D = [
@@ -321,7 +321,7 @@ export default function PreviewPage() {
                             </div>
                             <h3 className="text-[11px] sm:text-xs font-black text-foreground uppercase tracking-tight mb-2 line-clamp-1">{job.title}</h3>
                             <div className="flex flex-wrap gap-2 text-[9px] font-bold text-muted-foreground uppercase tracking-widest">
-                                <span className="bg-muted/50 px-2 py-1 rounded-lg">Rs. {job.budget}</span>
+                                <span className="bg-muted/50 px-2 py-1 rounded-lg">{job.budget}</span>
                                 <span className="bg-muted/50 px-2 py-1 rounded-lg">{job.location}</span>
                             </div>
                         </motion.div>
