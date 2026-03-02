@@ -4,6 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 import { Loader2, User, Mail, Phone, ChevronDown, ArrowRight, Shield, CreditCard } from "lucide-react";
 import { COUNTRY_CODES, detectCountryCode } from "@/data/countryCodes";
 
@@ -26,6 +27,7 @@ function InnerForm() {
     const elements = useElements();
     const navigate = useNavigate();
     const { toast } = useToast();
+    const { refreshProfile } = useAuth();
 
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState<"details" | "card">("details");
@@ -145,6 +147,7 @@ function InnerForm() {
                 const { data: subData } = await supabase.functions.invoke("check-subscription");
                 if (subData?.subscribed) {
                     toast({ title: "Welcome aboard!", description: "Your 3-day free trial has started." });
+                    await refreshProfile();
                     navigate("/dashboard");
                     return;
                 }
@@ -154,12 +157,14 @@ function InnerForm() {
                     const { data: retryData } = await supabase.functions.invoke("check-subscription");
                     if (retryData?.subscribed) {
                         toast({ title: "Welcome aboard!", description: "Your 3-day free trial has started." });
+                        await refreshProfile();
                         navigate("/dashboard");
                         return;
                     }
                 }
                 // Still proceed to dashboard even if check-subscription is slow
                 toast({ title: "Welcome!", description: "Your account is being set up. Access will be ready shortly." });
+                await refreshProfile();
                 navigate("/dashboard");
                 return;
             }
@@ -169,6 +174,7 @@ function InnerForm() {
                     const { data: retryData } = await supabase.functions.invoke("check-subscription");
                     if (retryData?.subscribed) {
                         toast({ title: "Welcome aboard!", description: "Your 3-day free trial has started." });
+                        await refreshProfile();
                         navigate("/dashboard");
                         return;
                     }
