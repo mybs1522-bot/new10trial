@@ -125,31 +125,21 @@ export default function PreviewPage() {
     const [showAllJobs, setShowAllJobs] = useState(false);
     const topRef = useRef<HTMLDivElement>(null);
 
-    // Evergreen countdown timer (resets from localStorage)
-    const getInitialSeconds = () => {
-        try {
-            const stored = localStorage.getItem("preview_timer");
-            if (stored) {
-                const remaining = Math.floor((JSON.parse(stored) - Date.now()) / 1000);
-                if (remaining > 0) return remaining;
-            }
-        } catch { }
-        const secs = 3 * 3600 + 23 * 60 + 32;
-        localStorage.setItem("preview_timer", JSON.stringify(Date.now() + secs * 1000));
-        return secs;
+    // Evergreen countdown timer — synced with EvergreenTimer component
+    const TIMER_TOTAL = 2 * 3600 + 27 * 60 + 32;
+    const TIMER_KEY = "evergreen_timer_start";
+    const getTimeLeft = () => {
+        let start = localStorage.getItem(TIMER_KEY);
+        if (!start) {
+            start = String(Date.now());
+            localStorage.setItem(TIMER_KEY, start);
+        }
+        const elapsed = Math.floor((Date.now() - Number(start)) / 1000);
+        return TIMER_TOTAL - (elapsed % TIMER_TOTAL);
     };
-    const [timeLeft, setTimeLeft] = useState(getInitialSeconds);
+    const [timeLeft, setTimeLeft] = useState(getTimeLeft);
     useEffect(() => {
-        const interval = setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev <= 1) {
-                    const secs = 3 * 3600 + 23 * 60 + 32;
-                    localStorage.setItem("preview_timer", JSON.stringify(Date.now() + secs * 1000));
-                    return secs;
-                }
-                return prev - 1;
-            });
-        }, 1000);
+        const interval = setInterval(() => setTimeLeft(getTimeLeft), 1000);
         return () => clearInterval(interval);
     }, []);
     const tH = String(Math.floor(timeLeft / 3600)).padStart(2, "0");
