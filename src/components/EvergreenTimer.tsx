@@ -43,7 +43,17 @@ export function EvergreenTimer({ onCtaClick }: { onCtaClick?: () => void }) {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
-      <div className="pointer-events-auto mx-auto max-w-md px-4 pb-4">
+      <div className="pointer-events-auto mx-auto max-w-md px-4 pb-4 flex flex-col gap-2">
+        {/* Price comparison */}
+        <div className="flex items-center justify-center gap-2 bg-white/95 backdrop-blur-md border border-border/30 rounded-xl py-2 px-4 shadow-lift text-center">
+          <span className="text-[10px] font-bold text-muted-foreground">You pay</span>
+          <span className="text-sm font-black text-foreground">$10/mo</span>
+          <span className="text-[9px] text-muted-foreground mx-1">→</span>
+          <span className="text-[10px] font-bold text-muted-foreground">Students earn avg</span>
+          <span className="text-sm font-black text-accent">$4,200/mo</span>
+        </div>
+
+        {/* Timer CTA */}
         <button
           onClick={onCtaClick}
           className="w-full flex items-center justify-center gap-3 py-3 px-5 rounded-xl bg-foreground text-white shadow-lift hover:shadow-green-lg transition-all duration-300 group"
