@@ -334,7 +334,7 @@ function InnerForm() {
                         type="submit"
                         className="w-full h-13 py-3.5 btn-primary rounded-xl text-white font-bold text-[12px] uppercase tracking-widest flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all shadow-green-lg"
                     >
-                        Continue to Payment <ArrowRight className="h-4 w-4" />
+                        Start Free Today <ArrowRight className="h-4 w-4" />
                     </button>
                 </form>
             ) : (

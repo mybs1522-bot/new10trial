@@ -143,30 +143,38 @@ export const AnimatedMarqueeHero: React.FC<AnimatedMarqueeHeroProps> = ({
                 </motion.div>
             </motion.div>
 
-            {/* Image Marquee */}
-            <div className="absolute bottom-0 left-0 w-full h-[30%] sm:h-[34%] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_75%,transparent)] pointer-events-none">
-                <motion.div
-                    className="flex gap-4 mt-4"
-                    animate={{
-                        x: ["-50%", "0%"],
-                        transition: { ease: "linear", duration: 40, repeat: Infinity },
-                    }}
-                >
+            {/* Image Marquee – CSS-only for smooth GPU performance */}
+            <style>{`
+                @keyframes marquee-scroll {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .marquee-track {
+                    display: flex;
+                    gap: 1.25rem;
+                    padding-top: 1rem;
+                    animation: marquee-scroll 18s linear infinite;
+                    will-change: transform;
+                }
+            `}</style>
+            <div className="absolute bottom-0 left-0 w-full h-[30%] sm:h-[34%] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_75%,transparent)] pointer-events-none overflow-hidden">
+                <div className="marquee-track">
                     {duplicatedImages.map((src, index) => (
                         <div
                             key={index}
-                            className="relative aspect-[3/4] h-44 md:h-60 flex-shrink-0"
-                            style={{ rotate: `${index % 3 === 0 ? -2.5 : index % 3 === 1 ? 1.5 : -1}deg` }}
+                            className="relative aspect-[3/4] h-40 sm:h-44 md:h-60 flex-shrink-0"
+                            style={{ transform: `rotate(${index % 3 === 0 ? -2.5 : index % 3 === 1 ? 1.5 : -1}deg)` }}
                         >
                             <img
                                 src={src}
                                 alt={`Design showcase ${index + 1}`}
+                                loading="eager"
                                 className="w-full h-full object-cover rounded-2xl shadow-lg"
                             />
                             <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/15 to-transparent" />
                         </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );
