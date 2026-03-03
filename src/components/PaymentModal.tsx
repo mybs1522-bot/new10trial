@@ -152,7 +152,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
         {loading ? (
           <><Loader2 className="h-5 w-5 animate-spin" />Processing…</>
         ) : (
-          <>🚀 Start Free Trial</>
+          <>🚀 Start Free Now</>
         )}
       </button>
       <div className="flex items-center justify-center gap-2 text-[9px] font-bold uppercase tracking-widest text-muted-foreground opacity-50">

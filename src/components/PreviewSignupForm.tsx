@@ -277,7 +277,7 @@ function InnerForm() {
                     {loading ? (
                         <><Loader2 className="h-5 w-5 animate-spin" />Setting up your trial...</>
                     ) : (
-                        <>Start Free Today <ArrowRight className="h-4 w-4" /></>
+                        <>Start Free Now <ArrowRight className="h-4 w-4" /></>
                     )}
                 </button>
 

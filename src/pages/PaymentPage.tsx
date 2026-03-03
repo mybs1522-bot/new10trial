@@ -162,7 +162,7 @@ function InlineCheckoutForm({ onSuccess }: { onSuccess: () => Promise<void> | vo
         {loading ? (
           <><Loader2 className="h-5 w-5 animate-spin" />Processing…</>
         ) : (
-          <>Start Free Trial <ArrowRight className="h-4 w-4" /></>
+          <>Start Free Now <ArrowRight className="h-4 w-4" /></>
         )}
       </button>
 

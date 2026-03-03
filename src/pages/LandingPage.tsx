@@ -144,7 +144,7 @@ export default function LandingPage() {
           </>
         }
         description="Courses, books, paid freelance projects, and a 10,000+ designer community — everything you need to grow as a designer. New content added every week. $10/mo."
-        ctaText="Start free trial — $0 today"
+        ctaText="Start Free Now"
         ctaSecondaryText="See what's inside"
         onCtaClick={() => navigate('/preview')}
         onCtaSecondaryClick={() => navigate('/preview')}
@@ -233,7 +233,7 @@ export default function LandingPage() {
               onClick={() => navigate('/preview')}
               className="px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
             >
-              See what's inside — free preview
+              Start Free Now
             </motion.button>
           </motion.div>
         </div>
@@ -266,7 +266,7 @@ export default function LandingPage() {
             onClick={() => navigate('/preview')}
             className="mt-5 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
           >
-            Start free trial — $0 today
+            Start Free Now
           </motion.button>
         </div>
       </motion.section>

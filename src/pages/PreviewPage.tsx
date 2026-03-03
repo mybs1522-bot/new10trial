@@ -197,7 +197,7 @@ export default function PreviewPage() {
                         onClick={() => setShowForm(true)}
                         className="btn-gold px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-gold hover:scale-105 transition-transform"
                     >
-                        Start Free Trial
+                        Start Free Now
                     </button>
                 </div>
             </header>
