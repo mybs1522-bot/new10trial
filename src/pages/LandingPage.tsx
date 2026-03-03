@@ -152,13 +152,14 @@ export default function LandingPage() {
       />
 
       {/* ─── VIDEO ─── */}
-      <div className="w-full" style={{ aspectRatio: '16/9' }}>
-        <iframe
-          src="https://iframe.mediadelivery.net/play/494628/927f45ba-0466-4d21-a0bc-4f144f33502d"
-          loading="lazy"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-          allowFullScreen
-          className="w-full h-full block"
+      <div className="w-full">
+        <video
+          src="/video/intro.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full block"
           style={{ border: 'none', margin: 0, padding: 0 }}
         />
       </div>
