@@ -151,6 +151,27 @@ export default function LandingPage() {
         images={[hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8]}
       />
 
+      {/* ─── AI URGENCY ─── */}
+      <motion.section
+        className="py-10 sm:py-14 px-4 bg-foreground text-white text-center"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container mx-auto max-w-xl">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent mb-3">Don't miss this</p>
+          <h2 className="text-xl sm:text-2xl font-display font-extrabold leading-tight mb-3">
+            AI is replacing designers who don't adapt.
+            <br />
+            <span className="text-accent">Be the one who adapts.</span>
+          </h2>
+          <p className="text-[13px] text-white/60 leading-relaxed max-w-md mx-auto">
+            We push weekly AI updates for design — the same tools top firms charge $200/hr to use. Master them here for $10/mo and work at the same level as industry leaders.
+          </p>
+        </div>
+      </motion.section>
+
       {/* ─── VIDEO ─── */}
       <div className="w-full">
         <video
