@@ -243,7 +243,7 @@ function InnerForm() {
                             {/* Divider */}
                             <div className="w-px h-6 bg-border/30" />
                             {/* Expiry */}
-                            <div className="w-[72px] px-3 py-3">
+                            <div className="w-[80px] px-2.5 py-3">
                                 <CardExpiryElement options={{ style: CARD_STYLE }} />
                             </div>
                             {/* Divider */}
