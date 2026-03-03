@@ -143,7 +143,7 @@ export default function LandingPage() {
             <span className="text-green-gradient">All in one place.</span>
           </>
         }
-        description="Learn interior design from absolute zero — organized courses & books that college will never teach. Even if you're a complete beginner, you can start earning in this industry. New content every week. $10/mo."
+        description="Learn AI + interior design from absolute zero — organized courses & books that college will never teach. Even if you're a complete beginner, you can start earning in this industry. New content every week. $10/mo."
         ctaText="Start Free Now"
         ctaSecondaryText="See what's inside"
         onCtaClick={() => navigate('/preview')}
