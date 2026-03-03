@@ -151,7 +151,17 @@ export default function LandingPage() {
         images={[hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8]}
       />
 
-      {/* ─── WHAT'S INSIDE ─── */}
+      {/* ─── VIDEO ─── */}
+      <div className="w-full" style={{ aspectRatio: '16/9' }}>
+        <iframe
+          src="https://iframe.mediadelivery.net/play/494628/927f45ba-0466-4d21-a0bc-4f144f33502d"
+          loading="lazy"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full block"
+          style={{ border: 'none', margin: 0, padding: 0 }}
+        />
+      </div>
       <motion.section
         className="py-12 sm:py-16 px-4"
         initial="hidden"
