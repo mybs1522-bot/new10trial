@@ -52,14 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .eq("id", userId)
       .single();
     if (data) {
-      setProfile(prev => {
-        const serverProfile = data as Profile;
-        // Don't downgrade has_paid from true to false (protect optimistic markPaid)
-        if (prev?.has_paid && !serverProfile.has_paid) {
-          return { ...serverProfile, has_paid: true, has_trial: prev.has_trial };
-        }
-        return serverProfile;
-      });
+      setProfile(data as Profile);
     }
   };
 
