@@ -136,86 +136,64 @@ export default function LandingPage() {
 
       {/* ─── HERO ─── */}
       <AnimatedMarqueeHero
-        tagline="Learn design skills + get real freelance projects"
+        tagline="Heaven for interior designers & architects"
         title={
           <>
-            The only platform where you{" "}
-            <span className="text-green-gradient">learn and earn at the same time</span>
+            Learn. Earn.{" "}
+            <span className="text-green-gradient">All in one place.</span>
           </>
         }
-        description="Master 6 design tools, then apply for real freelance projects — all inside one community. No job hunting. No cold outreach. We bring the clients to you. Try it free, $0 today."
-        ctaText="Get instant access — $0 today"
-        ctaSecondaryText="See the full curriculum"
+        description="Courses, books, paid freelance projects, and a 10,000+ designer community — everything you need to grow as a designer. New content added every week. $10/mo."
+        ctaText="Start free trial — $0 today"
+        ctaSecondaryText="See what's inside"
         onCtaClick={() => navigate('/preview')}
-        onCtaSecondaryClick={() => document.getElementById("curriculum")?.scrollIntoView({ behavior: "smooth" })}
+        onCtaSecondaryClick={() => navigate('/preview')}
         images={[hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8]}
       />
 
-      {/* ─── COMPACT STATS ─── */}
-      <motion.section
-        className="py-10 sm:py-12 border-y border-border/40"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
-            {stats.map((s) => (
-              <motion.div key={s.label} className="text-center" variants={itemVariants}>
-                <p className="text-2xl sm:text-3xl font-display font-extrabold text-foreground">{s.value}</p>
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground mt-1.5">{s.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
       {/* ─── WHAT'S INSIDE ─── */}
       <motion.section
-        className="py-14 sm:py-20 px-4"
+        className="py-12 sm:py-16 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
       >
-        <div className="container mx-auto max-w-2xl">
-          <motion.div className="text-center mb-10" variants={sectionVariants}>
-            <p className="section-label mb-3">Everything for $10/mo</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground leading-tight">
-              What you get inside
+        <div className="container mx-auto max-w-xl">
+          <motion.div className="text-center mb-8" variants={sectionVariants}>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground leading-tight">
+              Everything you need.{" "}
+              <span className="text-green-gradient">$10/mo.</span>
             </h2>
           </motion.div>
 
           <motion.div
-            className="space-y-3"
+            className="space-y-2.5"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { icon: Monitor, text: "6 professional courses — AutoCAD, SketchUp, D5 Render, AI Render & more" },
-              { icon: BookOpen, text: "6 room-by-room design books (kitchen, bedroom, living & more)" },
-              { icon: Briefcase, text: "Paid freelance projects — real clients, real money, every week" },
-              { icon: Users, text: "Private community of 10,000+ designers learning & earning together" },
-              { icon: Layers, text: "500+ premium 3D assets, textures & models" },
-              { icon: BadgeCheck, text: "Verified certificate accepted by design firms worldwide" },
+              { icon: Monitor, text: "Professional courses — new ones added every week" },
+              { icon: BookOpen, text: "Design books & guides — growing library" },
+              { icon: Briefcase, text: "Paid freelance projects from real clients" },
+              { icon: Users, text: "10,000+ designer community" },
+              { icon: Layers, text: "500+ premium 3D assets & textures" },
+              { icon: BadgeCheck, text: "Verified certificate" },
             ].map((item, i) => (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="flex items-center gap-4 rounded-2xl border border-border/30 bg-white p-4 shadow-soft card-hover"
+                className="flex items-center gap-3.5 rounded-xl border border-border/30 bg-white px-4 py-3 shadow-soft"
               >
-                <div className="h-10 w-10 rounded-xl bg-accent/8 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="h-4.5 w-4.5 text-accent" />
-                </div>
-                <p className="text-[14px] font-medium text-foreground">{item.text}</p>
+                <item.icon className="h-4 w-4 text-accent flex-shrink-0" />
+                <p className="text-[13.5px] font-medium text-foreground">{item.text}</p>
               </motion.div>
             ))}
           </motion.div>
 
-          <motion.div variants={itemVariants} className="text-center mt-8">
+          <motion.div variants={itemVariants} className="text-center mt-7">
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
@@ -223,42 +201,9 @@ export default function LandingPage() {
               onClick={() => navigate('/preview')}
               className="px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
             >
-              See full curriculum — free preview
+              See what's inside — free preview
             </motion.button>
           </motion.div>
-        </div>
-      </motion.section>
-
-      {/* ─── THE BEST PART ─── */}
-      <motion.section
-        className="py-14 sm:py-20 px-4 bg-accent/[0.03]"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
-      >
-        <div className="container mx-auto max-w-2xl text-center">
-          <div className="h-14 w-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-5">
-            <Briefcase className="h-6 w-6 text-accent" />
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground leading-tight mb-4">
-            You don't just learn here.{" "}
-            <span className="text-green-gradient">You get hired here.</span>
-          </h2>
-          <p className="text-[15px] text-muted-foreground max-w-lg mx-auto leading-relaxed mb-6">
-            Our freelance board brings real client projects directly to you — no cold outreach, no job hunting. Learn a skill, apply it to a paid gig, start earning. All in one place.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[12px] text-muted-foreground">
-            <span className="flex items-center gap-1.5 bg-white rounded-full border border-border/30 px-3 py-1.5 shadow-soft">
-              <CheckCircle className="h-3.5 w-3.5 text-accent" /> New projects every week
-            </span>
-            <span className="flex items-center gap-1.5 bg-white rounded-full border border-border/30 px-3 py-1.5 shadow-soft">
-              <CheckCircle className="h-3.5 w-3.5 text-accent" /> Portfolio verification
-            </span>
-            <span className="flex items-center gap-1.5 bg-white rounded-full border border-border/30 px-3 py-1.5 shadow-soft">
-              <CheckCircle className="h-3.5 w-3.5 text-accent" /> $500-$5,000 per project
-            </span>
-          </div>
         </div>
       </motion.section>
 
@@ -272,31 +217,24 @@ export default function LandingPage() {
 
       {/* ─── FINAL CTA ─── */}
       <motion.section
-        className="py-14 sm:py-20 px-4"
+        className="py-12 sm:py-16 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={sectionVariants}
       >
-        <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold tracking-tight text-foreground">
-            Start free. Cancel anytime.
+        <div className="container mx-auto max-w-xl text-center">
+          <h2 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight text-foreground">
+            Start free. Cancel anytime. $10/mo.
           </h2>
-          <p className="mt-4 text-[15px] text-muted-foreground max-w-md mx-auto">
-            3-day free trial, then $10/mo. 6 courses, 6 books, paid projects, and a certificate. Less than two coffees a month.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-5 text-[12px] text-muted-foreground">
-            <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-accent" /> $0 charged today</span>
-            <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5 text-accent" /> Cancel in one click</span>
-          </div>
           <motion.button
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             onClick={() => navigate('/preview')}
-            className="mt-8 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
+            className="mt-5 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
           >
-            Get instant access — $0 today
+            Start free trial — $0 today
           </motion.button>
         </div>
       </motion.section>
