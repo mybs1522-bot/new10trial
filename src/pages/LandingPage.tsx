@@ -239,10 +239,55 @@ export default function LandingPage() {
         </div>
       </motion.section>
 
+      {/* ─── HOW TO EARN ─── */}
+      <motion.section
+        className="py-12 sm:py-16 px-4 bg-secondary/30"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={sectionVariants}
+      >
+        <div className="container mx-auto max-w-2xl">
+          <motion.div className="text-center mb-8" variants={sectionVariants}>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground leading-tight">
+              How do you <span className="text-green-gradient">start earning?</span>
+            </h2>
+            <p className="mt-2 text-[13px] text-muted-foreground">Four steps. That's it.</p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {[
+              { step: "1", title: "Join", desc: "Sign up for $10/mo" },
+              { step: "2", title: "Learn", desc: "Complete AI & software courses (included free)" },
+              { step: "3", title: "Apply", desc: "Pick freelance projects posted in the community" },
+              { step: "4", title: "Get Paid", desc: "Deliver work, earn $500–$5,000 per project" },
+            ].map((item) => (
+              <motion.div
+                key={item.step}
+                variants={itemVariants}
+                className="rounded-2xl border border-border/30 bg-white p-4 text-center shadow-soft"
+              >
+                <div className="h-9 w-9 rounded-full bg-accent text-white flex items-center justify-center mx-auto mb-3 text-[12px] font-black">
+                  {item.step}
+                </div>
+                <p className="font-display font-extrabold text-sm text-foreground mb-1">{item.title}</p>
+                <p className="text-[11px] text-muted-foreground leading-snug">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
       {/* ─── TESTIMONIALS ─── */}
       <TestimonialsSection
-        title="People who said 'I can't do this' — then did it"
-        description="Every person below started with zero experience. Read what happened next."
+        title="Real members. Real results."
+        description="They started exactly where you are now."
         testimonials={testimonials}
         className="bg-white py-14 sm:py-20"
       />
