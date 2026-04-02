@@ -60,9 +60,12 @@ export function LoginForm({ onClose }: { onClose?: () => void }) {
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setOtpLoading(true);
-    const { data, error } = await supabase.functions.invoke("send-otp", { body: { email: otpEmail } });
-    if (error || data?.error) {
-      toast({ title: "Failed to send OTP", description: error?.message || data?.error, variant: "destructive" });
+    const { error } = await supabase.auth.signInWithOtp({ 
+      email: otpEmail,
+      options: { shouldCreateUser: false }
+    });
+    if (error) {
+      toast({ title: "Failed to send OTP", description: error.message, variant: "destructive" });
     } else {
       setOtpSent(true);
       toast({ title: "OTP sent!", description: "Check your email for the 6-digit code." });
@@ -73,15 +76,13 @@ export function LoginForm({ onClose }: { onClose?: () => void }) {
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setOtpLoading(true);
-    const { data, error } = await supabase.functions.invoke("verify-otp", { body: { email: otpEmail, code: otp } });
-    if (error || data?.error) {
-      toast({ title: "Invalid OTP", description: data?.error || error?.message, variant: "destructive" });
-      setOtpLoading(false);
-      return;
-    }
-    const { data: sessionData, error: sessionError } = await supabase.auth.verifyOtp({ token_hash: data.token_hash, type: "magiclink" });
+    const { data: sessionData, error: sessionError } = await supabase.auth.verifyOtp({ 
+      email: otpEmail, 
+      token: otp, 
+      type: "email" 
+    });
     if (sessionError || !sessionData?.user) {
-      toast({ title: "Login failed", description: sessionError?.message, variant: "destructive" });
+      toast({ title: "Invalid OTP", description: sessionError?.message || "Verification failed", variant: "destructive" });
       setOtpLoading(false);
       return;
     }

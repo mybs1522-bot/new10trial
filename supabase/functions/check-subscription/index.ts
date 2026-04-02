@@ -115,7 +115,7 @@ serve(async (req) => {
 
     const hadAccessBefore = Boolean(existingProfile?.has_paid || existingProfile?.has_trial);
 
-    const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
+    const stripe = new Stripe(stripeKey);
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
 
     if (customers.data.length === 0) {
@@ -133,8 +133,8 @@ serve(async (req) => {
       limit: 50,
     });
 
-    const activeSubscriptions = subscriptions.data.filter((s) => s.status === "active").sort((a, b) => b.created - a.created);
-    const trialSubscriptions = subscriptions.data.filter((s) => s.status === "trialing").sort((a, b) => b.created - a.created);
+    const activeSubscriptions = subscriptions.data.filter((s) => s.status === "active" && !s.cancel_at_period_end).sort((a, b) => b.created - a.created);
+    const trialSubscriptions = subscriptions.data.filter((s) => s.status === "trialing" && !s.cancel_at_period_end).sort((a, b) => b.created - a.created);
 
     let hasAccess = false;
     let isTrial = false;

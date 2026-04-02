@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS public.otp_codes CASCADE;
+DROP TABLE IF EXISTS public.student_course_access CASCADE;
+DROP TABLE IF EXISTS public.email_drip_queue CASCADE;
+DROP TABLE IF EXISTS public.email_drip_templates CASCADE;
+DROP TABLE IF EXISTS public.payment_records CASCADE;
+DROP TABLE IF EXISTS public.certificates CASCADE;
+DROP TABLE IF EXISTS public.freelance_interests CASCADE;
+DROP TABLE IF EXISTS public.freelance_projects CASCADE;
+DROP TABLE IF EXISTS public.messages CASCADE;
+DROP TABLE IF EXISTS public.site_visit_rsvp CASCADE;
+DROP TABLE IF EXISTS public.site_visits CASCADE;
+DROP TABLE IF EXISTS public.user_roles CASCADE;
+DROP TABLE IF EXISTS public.profiles CASCADE;
+DROP TYPE IF EXISTS public.app_role CASCADE;

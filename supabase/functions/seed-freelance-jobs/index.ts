@@ -105,8 +105,8 @@ serve(async (req) => {
       const city = cities[i % cities.length];
       const cityAreas = areas[city] || [city];
       const area = cityAreas[Math.floor(Math.random() * cityAreas.length)];
-      const budgetLow = job.br[0] + Math.floor(Math.random() * 30);
-      const budgetHigh = job.br[1] + Math.floor(Math.random() * 50);
+      const budgetLow = Math.max(250, Math.floor((job.br[0] * 2.2)));
+      const budgetHigh = Math.min(1200, Math.floor((job.br[1] * 2.2) + Math.floor(Math.random() * 100)));
       const createdAt = new Date(now - Math.floor(Math.random() * TEN_DAYS));
 
       rows.push({

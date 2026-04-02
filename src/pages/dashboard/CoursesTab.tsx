@@ -2,7 +2,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { Lock, BookOpen, GraduationCap, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 import courseAutocad from "@/assets/course-autocad.jpg";
 import courseSketchup from "@/assets/course-sketchup.jpg";
 import courseD5 from "@/assets/course-d5render.jpg";
@@ -24,7 +25,25 @@ const COURSES = [
 export default function CoursesTab() {
   const { profile } = useAuth();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const hasPaid = profile?.has_paid || profile?.has_trial;
+
+  useEffect(() => {
+    if (searchParams.get("checkout") === "success") {
+      try {
+        if (typeof window !== "undefined" && (window as any).fbq) {
+          // As requested: mark the start of trial as a Purchase for pixel optimization
+          (window as any).fbq('track', 'Purchase', { value: '10.00', currency: 'USD' });
+        }
+      } catch (e) {
+        console.error("FB Pixel error", e);
+      }
+      
+      // Clean up the URL query parameter so it doesn't fire again on refresh
+      searchParams.delete("checkout");
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   return (
     <DashboardLayout>

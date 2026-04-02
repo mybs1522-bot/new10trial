@@ -190,7 +190,7 @@ export function PaymentModal({ open, onOpenChange }: PaymentModalProps) {
   const initCheckout = async () => {
     setLoading(true);
     setError(null);
-    setClientSecret(null); // Reset to force fresh Elements
+    setClientSecret(null); // Reset to force fresh Edge Function call
     try {
       console.log("[PaymentModal] Invoking create-checkout...");
       const { data, error: fnError } = await supabase.functions.invoke("create-checkout");
@@ -199,7 +199,11 @@ export function PaymentModal({ open, onOpenChange }: PaymentModalProps) {
         setError(data?.error || fnError?.message || "Failed to initialize payment");
         return;
       }
-      setClientSecret(data.clientSecret);
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        setError("Invalid response from checkout provider.");
+      }
     } catch (e: any) {
       console.error("[PaymentModal] create-checkout error:", e);
       setError(e.message);
@@ -231,70 +235,19 @@ export function PaymentModal({ open, onOpenChange }: PaymentModalProps) {
 
   const content = (
     <div className="space-y-4">
-      {loading && (
-        <div className="flex flex-col items-center justify-center py-12 gap-3">
-          <Loader2 className="h-8 w-8 animate-spin text-accent" />
-          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Setting up secure payment…</p>
-        </div>
-      )}
-      {error && (
-        <div className="text-center py-8 space-y-3">
-          <p className="text-sm text-destructive font-medium">{error}</p>
-          <button onClick={initCheckout} className="text-xs font-bold text-accent underline">Try again</button>
-        </div>
-      )}
-      {clientSecret && !loading && (
-        <Elements
-          stripe={stripePromise}
-          options={{
-            clientSecret,
-            appearance: {
-              theme: "night",
-              variables: {
-                colorPrimary: "#c9a55a",
-                colorBackground: "#141418",
-                colorText: "#e4e4e7",
-                colorDanger: "#ef4444",
-                fontFamily: "system-ui, sans-serif",
-                borderRadius: "12px",
-                spacingUnit: "4px",
-              },
-              rules: {
-                ".Tab": {
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  boxShadow: "none",
-                  backgroundColor: "#1a1a1f",
-                },
-                ".Tab:hover": {
-                  border: "1px solid rgba(201, 165, 90, 0.3)",
-                },
-                ".Tab--selected": {
-                  border: "1px solid rgba(201, 165, 90, 0.6)",
-                  backgroundColor: "rgba(201, 165, 90, 0.08)",
-                },
-                ".Input": {
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  backgroundColor: "#1a1a1f",
-                  boxShadow: "none",
-                },
-                ".Input:focus": {
-                  border: "1px solid rgba(201, 165, 90, 0.5)",
-                  boxShadow: "0 0 0 1px rgba(201, 165, 90, 0.2)",
-                },
-                ".Label": {
-                  color: "rgba(228, 228, 231, 0.5)",
-                  fontSize: "11px",
-                  fontWeight: "700",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                },
-              },
-            },
-          }}
-        >
-          <CheckoutForm onSuccess={handleSuccess} />
-        </Elements>
-      )}
+      <div className="flex flex-col items-center justify-center py-12 gap-3">
+        {error ? (
+          <>
+            <p className="text-sm text-destructive font-medium text-center px-4">{error}</p>
+            <button onClick={initCheckout} className="text-xs font-bold text-accent underline mt-2">Try again</button>
+          </>
+        ) : (
+          <>
+            <Loader2 className="h-8 w-8 animate-spin text-accent" />
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground text-center">Redirecting to secure Stripe checkout…</p>
+          </>
+        )}
+      </div>
     </div>
   );
 

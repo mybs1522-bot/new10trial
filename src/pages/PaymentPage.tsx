@@ -33,142 +33,52 @@ const CARD_STYLE = {
   invalid: { color: "#ef4444", iconColor: "#ef4444" },
 };
 
-function InlineCheckoutForm({ onSuccess }: { onSuccess: () => Promise<void> | void }) {
-  const stripe = useStripe();
-  const elements = useElements();
+function HostedCheckoutForm({ onSuccess }: { onSuccess: () => void }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!stripe || !elements) return;
-
     setLoading(true);
     setError(null);
-
-    const failSafeTimeout = window.setTimeout(() => {
-      setError("Payment confirmation is taking too long. Please refresh and try again.");
-      setLoading(false);
-    }, 90000);
-
     try {
-      const cardNumberElement = elements.getElement(CardNumberElement);
-      if (!cardNumberElement) {
-        setError("Card form not loaded. Please refresh the page.");
-        return;
-      }
-
       const { data, error: fnError } = await supabase.functions.invoke("create-checkout");
       if (fnError || data?.error) {
-        setError(data?.error || fnError?.message || "Failed to create subscription. Please try again.");
+        setError(data?.error || fnError?.message || "Failed to initialize payment");
         return;
       }
-      const clientSecret = data.clientSecret;
-      if (!clientSecret) {
-        setError("Failed to create subscription. Please try again.");
-        return;
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        setError("Invalid response from checkout provider.");
       }
-
-      const result = await stripe.confirmCardSetup(clientSecret, {
-        payment_method: {
-          card: cardNumberElement,
-          billing_details: {
-            address: { country: "US" },
-          },
-        },
-      });
-
-      if (result.error) {
-        setError(result.error.message || "Payment failed");
-        return;
-      }
-
-      const setupStatus = result.setupIntent?.status;
-
-      if (setupStatus === "succeeded") {
-        for (let retries = 0; retries < 12; retries++) {
-          const { data } = await supabase.functions.invoke("check-subscription");
-          if (data?.subscribed) {
-            toast({ title: "Welcome aboard! 🎉", description: "Your 3-day free trial has started." });
-            await onSuccess();
-            return;
-          }
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-        }
-        toast({ title: "Welcome aboard! 🎉", description: "Your 3-day free trial has started." });
-        await onSuccess();
-        return;
-      }
-
-      if (setupStatus === "processing") {
-        for (let retries = 0; retries < 12; retries++) {
-          const { data } = await supabase.functions.invoke("check-subscription");
-          if (data?.subscribed) {
-            toast({ title: "Welcome aboard! 🎉", description: "Your 3-day free trial has started." });
-            await onSuccess();
-            return;
-          }
-          await new Promise((resolve) => setTimeout(resolve, 2500));
-        }
-        setError("Payment is still processing. Please refresh in a few seconds.");
-        return;
-      }
-
-      setError(`Unexpected status: ${setupStatus || "unknown"}. Please try again.`);
     } catch (err: any) {
-      setError(err?.message || "Payment failed unexpectedly. Please try again.");
+      setError(err?.message || "Payment redirect failed. Please try again.");
     } finally {
-      window.clearTimeout(failSafeTimeout);
       setLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Card Number */}
-      <div>
-        <label className="block text-[11px] font-bold text-muted-foreground/60 uppercase tracking-[0.05em] mb-2">Card Number</label>
-        <div className="rounded-xl border-[1.5px] border-border/40 bg-[#fafbfa] px-4 py-3.5 transition-all focus-within:border-accent focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(45,138,94,0.08)]">
-          <CardNumberElement options={{ style: CARD_STYLE, showIcon: true }} />
-        </div>
-      </div>
-
-      {/* Expiry + CVC side by side */}
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className="block text-[11px] font-bold text-muted-foreground/60 uppercase tracking-[0.05em] mb-2">Expiry</label>
-          <div className="rounded-xl border-[1.5px] border-border/40 bg-[#fafbfa] px-4 py-3.5 transition-all focus-within:border-accent focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(45,138,94,0.08)]">
-            <CardExpiryElement options={{ style: CARD_STYLE }} />
-          </div>
-        </div>
-        <div>
-          <label className="block text-[11px] font-bold text-muted-foreground/60 uppercase tracking-[0.05em] mb-2">CVC</label>
-          <div className="rounded-xl border-[1.5px] border-border/40 bg-[#fafbfa] px-4 py-3.5 transition-all focus-within:border-accent focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(45,138,94,0.08)]">
-            <CardCvcElement options={{ style: CARD_STYLE }} />
-          </div>
-        </div>
-      </div>
-
       {error && (
-        <p className="text-xs text-destructive font-medium bg-destructive/5 p-3 rounded-xl">{error}</p>
+        <p className="text-xs text-destructive font-medium bg-destructive/10 p-3 rounded-lg">{error}</p>
       )}
-
       <button
         type="submit"
-        disabled={!stripe || loading}
-        className="w-full h-14 btn-primary rounded-xl text-white font-semibold text-[13px] flex items-center justify-center gap-2.5 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-green-lg disabled:opacity-60"
+        disabled={loading}
+        className="w-full h-14 bg-[#232328] hover:bg-[#2c2c32] text-white font-black text-xs uppercase tracking-[0.15em] rounded-xl flex items-center justify-center gap-3 transition-all shadow-md active:scale-[0.98] disabled:opacity-60"
       >
         {loading ? (
-          <><Loader2 className="h-5 w-5 animate-spin" />Processing…</>
+          <><Loader2 className="h-5 w-5 animate-spin" />Redirecting...</>
         ) : (
-          <>Start Free Now <ArrowRight className="h-4 w-4" /></>
+          <>Checkout securely with Stripe</>
         )}
       </button>
-
-      <div className="flex items-center justify-center gap-1.5 text-[10px] font-bold text-muted-foreground/30 uppercase tracking-[0.08em]">
+      <div className="flex items-center justify-center gap-2 text-[9px] font-bold uppercase tracking-widest text-muted-foreground/60">
+        <Lock className="h-3 w-3" />
+        <span>Secured by Stripe® · 256-bit SSL</span>
         <Shield className="h-3 w-3" />
-        <span>256-bit SSL Encrypted · Stripe Secured</span>
       </div>
     </form>
   );
@@ -318,15 +228,8 @@ export default function PaymentPage() {
                   </div>
                 </div>
 
-                {/* Stripe Card Elements */}
-                <Elements
-                  stripe={stripePromise}
-                  options={{
-                    fonts: [{ cssSrc: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" }],
-                  }}
-                >
-                  <InlineCheckoutForm onSuccess={handleSuccess} />
-                </Elements>
+                {/* Stripe Card Elements replaced with Hosted Checkout */}
+                <HostedCheckoutForm onSuccess={handleSuccess} />
               </div>
             </div>
           </div>
