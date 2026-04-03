@@ -91,7 +91,7 @@ export function CancelSubscriptionFlow({ open, onOpenChange }: CancelSubscriptio
               </div>
               <DialogTitle className="text-center text-base font-black uppercase tracking-tight">Are you sure you want to leave?</DialogTitle>
               <DialogDescription className="text-center text-xs text-muted-foreground leading-relaxed mt-2">
-                You'll lose access to <strong>all 6 courses</strong>, <strong>book library</strong>, <strong>freelance opportunities</strong>, and <strong>certificates</strong>. 
+                You'll lose access to <strong>all courses</strong>, <strong>book library</strong>, <strong>freelance opportunities</strong>, and <strong>certificates</strong>. 
                 Plus, you'll miss all upcoming content released every Saturday.
               </DialogDescription>
             </DialogHeader>

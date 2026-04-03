@@ -55,7 +55,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
       const setupIntentStatus = result.setupIntent?.status;
 
       if (setupIntentStatus === "succeeded") {
-        toast({ title: "Welcome aboard! 🎉", description: "Your 3-day free trial has started." });
+        toast({ title: "Welcome aboard! 🎉", description: "Your free trial has started." });
         await onSuccess();
         return;
       }
@@ -83,7 +83,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
             const latestStatus = si.setupIntent?.status;
 
             if (latestStatus === "succeeded") {
-              toast({ title: "Welcome aboard! 🎉", description: "Your 3-day free trial has started." });
+              toast({ title: "Welcome aboard! 🎉", description: "Your free trial has started." });
               await onSuccess();
               return;
             }
@@ -96,7 +96,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
 
           const { data } = await supabase.functions.invoke("check-subscription");
           if (data?.subscribed) {
-            toast({ title: "Welcome aboard! 🎉", description: "Your 3-day free trial has started." });
+            toast({ title: "Welcome aboard! 🎉", description: "Your free trial has started." });
             await onSuccess();
             return;
           }
@@ -227,7 +227,7 @@ export function PaymentModal({ open, onOpenChange }: PaymentModalProps) {
       <div className="text-center space-y-2">
         <h2 className="text-xl font-black uppercase tracking-tight text-foreground">Complete Payment</h2>
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
-          3-day free trial · Then $10/mo · Cancel anytime
+          Free trial · Then $10/mo · Cancel anytime
         </p>
       </div>
     </>

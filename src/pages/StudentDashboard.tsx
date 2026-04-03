@@ -134,7 +134,7 @@ function SalesPage({ profile, navigate }: { profile: any; navigate: any }) {
     else localStorage.setItem("avada_spots", "17");
   }, []);
 
-  const UnlockBtn = ({ label = "Start Free Now", large = false, variant = "primary" }: { label?: string; large?: boolean; variant?: string }) => (
+  const UnlockBtn = ({ label = "Start Designing Free", large = false, variant = "primary" }: { label?: string; large?: boolean; variant?: string }) => (
     <button
       onClick={() => navigate("/dashboard/payment")}
       className={cn(
@@ -176,7 +176,7 @@ function SalesPage({ profile, navigate }: { profile: any; navigate: any }) {
             </p>
             <UnlockBtn label="Claim Your Free Access" large />
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 mt-6">
-              {[{ icon: ShieldCheck, t: "3-Day Free Trial" }, { icon: Zap, t: "Instant Access" }, { icon: Award, t: "Paid Certificate" }].map(({ icon: Icon, t }) => (
+              {[{ icon: ShieldCheck, t: "Free to Start" }, { icon: Zap, t: "Instant Access" }, { icon: Award, t: "Paid Certificate" }].map(({ icon: Icon, t }) => (
                 <div key={t} className="flex items-center gap-1.5 text-white/30 text-[11px] font-medium"><Icon className="h-3.5 w-3.5" />{t}</div>
               ))}
             </div>
@@ -359,9 +359,9 @@ function SalesPage({ profile, navigate }: { profile: any; navigate: any }) {
               Stop Watching. Start <span className="text-green-gradient">Earning.</span>
             </h2>
             <p className="text-white/40 text-[12px] mb-6 max-w-md mx-auto leading-relaxed">
-              3-day free trial · Cancel anytime · Students earn an average of <strong className="text-white/70">$2,400 in their first 60 days</strong>
+              Cancel anytime · Students earn an average of <strong className="text-white/70">$2,400 in their first 60 days</strong>
             </p>
-            <UnlockBtn label="Start Your Free Trial Now" large />
+            <UnlockBtn label="Start Designing Free" large />
             <p className="text-white/20 text-[10px] mt-4 font-medium">
               🔒 Secure checkout · Instant access to all content
             </p>

@@ -206,7 +206,7 @@ export default function AdminDashboard() {
   const WA_MESSAGES = [
     (name: string) => `Hey ${name}
 
-You signed up at start.avadalearn.com but haven't started your 3-day free trial yet.
+You signed up at start.avadalearn.com but haven't started your free trial yet.
 
 We just added new AI courses that help you create renders exactly like your own design concepts - faster and client-ready.
 
@@ -222,7 +222,7 @@ Need help getting started? Just reply here and I'll assist you.`,
 
 I noticed you still haven't activated your free trial. No pressure at all, but I wanted to make sure you didn't miss it.
 
-You get full access to all 6 courses, the design books, and the freelance job board for 3 days - completely free.
+You get full access to all courses, the design books, and the freelance job board completely free.
 
 A lot of students tell me they wish they started sooner. If there's anything stopping you or if you have questions, just reply here.
 
@@ -232,7 +232,7 @@ Here's the link again - https://start.avadalearn.com`,
 
 Your free trial spot is still open but I won't be following up again after this.
 
-If interior design is something you want to pursue seriously, this is probably the easiest way to start. 3 days, full access, no commitment.
+If interior design is something you want to pursue seriously, this is probably the easiest way to start. Full access, no commitment.
 
 If not, no worries at all. I wish you the best either way.
 

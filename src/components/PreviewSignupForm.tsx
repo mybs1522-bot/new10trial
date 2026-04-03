@@ -185,7 +185,7 @@ export function PreviewSignupForm() {
                 {/* Pricing callout */}
                 <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-accent/[0.04] border border-accent/10 mt-2">
                     <div>
-                        <p className="text-[11px] font-bold text-foreground">3-day free trial</p>
+                        <p className="text-[11px] font-bold text-foreground">Start Free Trial</p>
                         <p className="text-[10px] text-muted-foreground">then $10/mo · cancel anytime</p>
                     </div>
                     <span className="text-lg font-black text-accent">$0</span>

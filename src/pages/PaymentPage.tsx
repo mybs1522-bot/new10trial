@@ -15,7 +15,7 @@ import { EvergreenTimer } from "@/components/EvergreenTimer";
 const stripePromise = loadStripe("pk_live_51PRJCsGGsoQTkhyv6OrT4zvnaaB5Y0MSSkTXi0ytj33oygsfW3dcu6aOFa9q3dr2mXYTCJErnFQJcOcyuDAsQd4B00lIAdclbB");
 
 const PLAN_FEATURES = [
-  { icon: GraduationCap, label: "All 6 Courses", desc: "AutoCAD, SketchUp, D5 Render, AI Rendering, Workflow & Client Management" },
+  { icon: GraduationCap, label: "Professional Courses", desc: "AutoCAD, SketchUp, D5 Render, AI Rendering, Workflow & Client Management" },
   { icon: BookOpen, label: "PDF Book Library", desc: "Curated design books & references" },
   { icon: Briefcase, label: "Freelance Projects", desc: "Access to live freelance project leads" },
   { icon: Calendar, label: "Certificates", desc: "Certificate of completion included" },
@@ -136,7 +136,7 @@ export default function PaymentPage() {
         {/* Header */}
         <div className="text-center mb-6 lg:mb-10">
           <div className="inline-flex items-center gap-2 bg-accent/5 text-accent text-[10px] font-black tracking-[0.15em] uppercase px-4 py-2 rounded-full mb-4 border border-accent/15">
-            <Sparkles className="h-3 w-3" /> 3-day free trial · $0 charged today
+            <Sparkles className="h-3 w-3" /> Free trial · $0 charged today
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black text-foreground tracking-tight">
             Start Your Free Trial
@@ -161,7 +161,7 @@ export default function PaymentPage() {
                   <span className="text-accent text-3xl font-black">$0</span>
                   <span className="text-muted-foreground text-xs font-medium">today</span>
                 </div>
-                <p className="text-[10px] font-medium text-muted-foreground">Then $10/mo after 3-day trial</p>
+                <p className="text-[10px] font-medium text-muted-foreground">Then $10/mo after trial</p>
               </div>
             </div>
 
@@ -224,7 +224,7 @@ export default function PaymentPage() {
                   </div>
                   <div>
                     <p className="text-[12px] font-bold text-foreground">Your card won't be charged today</p>
-                    <p className="text-[10px] font-medium text-muted-foreground">3-day free trial · Cancel anytime before it ends</p>
+                    <p className="text-[10px] font-medium text-muted-foreground">Free trial · Cancel anytime before it ends</p>
                   </div>
                 </div>
 

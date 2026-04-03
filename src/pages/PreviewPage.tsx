@@ -149,16 +149,16 @@ export default function PreviewPage() {
     const SECTIONS = [
         {
             id: "courses",
-            title: "6 Professional Courses",
+            title: "Professional Courses",
             subtitle: "Master every tool clients pay for",
             icon: GraduationCap,
-            color: "from-emerald-500/10 to-teal-500/10",
-            iconColor: "text-emerald-500",
-            borderColor: "border-emerald-500/20",
+            color: "from-accent/10 to-accent/5",
+            iconColor: "text-accent",
+            borderColor: "border-accent/20",
         },
         {
             id: "books",
-            title: "6 Design Books",
+            title: "Design Books",
             subtitle: "Room-by-room execution guides",
             icon: BookOpen,
             color: "from-amber-500/10 to-orange-500/10",
@@ -214,7 +214,7 @@ export default function PreviewPage() {
                     Master Design Skills. Get Real<br className="hidden sm:block" /> Freelance Projects Inside.
                 </h1>
                 <p className="text-muted-foreground text-sm sm:text-base font-medium max-w-xl mx-auto">
-                    The only platform where you learn design tools and apply for real client projects — all in one community. Start your 3-day free trial.
+                    The only platform where you learn every design tool and get connected to real freelance projects — all in one community.
                 </p>
             </motion.section>
 
@@ -249,12 +249,12 @@ export default function PreviewPage() {
                 className="max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16"
             >
                 <div className="flex flex-col items-center sm:flex-row sm:items-center gap-3 mb-6 text-center sm:text-left">
-                    <div className="h-10 w-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                        <GraduationCap className="h-5 w-5 text-emerald-500" />
+                    <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                        <GraduationCap className="h-5 w-5 text-accent" />
                     </div>
                     <div>
                         <h2 className="text-base sm:text-lg font-black text-foreground uppercase tracking-tight">Courses</h2>
-                        <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">6 Professional Courses Included</p>
+                        <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Professional Courses Included</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
@@ -266,7 +266,7 @@ export default function PreviewPage() {
                             whileInView="visible"
                             viewport={{ once: true, margin: "-40px" }}
                             variants={cardVariants}
-                            className="rounded-2xl overflow-hidden bg-card border border-white/5 group hover:border-emerald-500/20 transition-all"
+                            className="rounded-2xl overflow-hidden bg-card border border-white/5 group hover:border-accent/20 transition-all"
                         >
                             <div className="aspect-[4/3] overflow-hidden relative">
                                 <img src={course.image} alt={course.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
@@ -284,10 +284,10 @@ export default function PreviewPage() {
                 </div>
 
                 {/* Coming this week */}
-                <div className="mt-5 rounded-2xl border border-emerald-500/10 bg-emerald-500/[0.03] p-4 text-center sm:text-left">
+                <div className="mt-5 rounded-2xl border border-accent/10 bg-accent/[0.03] p-4 text-center sm:text-left">
                     <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
-                        <Clock className="h-3.5 w-3.5 text-emerald-500" />
-                        <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">New courses coming this week</span>
+                        <Clock className="h-3.5 w-3.5 text-accent" />
+                        <span className="text-[10px] font-black text-accent uppercase tracking-widest">New courses coming this week</span>
                     </div>
                     <div className="flex flex-wrap justify-center sm:justify-start gap-2">
                         {UPCOMING_COURSES.map((name) => (
@@ -486,14 +486,14 @@ export default function PreviewPage() {
                                 {/* CTA row */}
                                 <div className="flex items-center justify-between gap-4">
                                     <div className="hidden sm:block">
-                                        <p className="text-xs font-black text-foreground uppercase tracking-tight">3-Day Free Trial</p>
-                                        <p className="text-[10px] font-medium text-muted-foreground">Full access to everything above. Cancel anytime.</p>
+                                        <p className="text-xs font-black text-foreground uppercase tracking-tight">Full Access</p>
+                                        <p className="text-[10px] font-medium text-muted-foreground">All courses, books & freelance board. Cancel anytime.</p>
                                     </div>
                                     <button
                                         onClick={() => setShowForm(true)}
                                         className="btn-gold w-full sm:w-auto px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] text-white shadow-gold-lg hover:scale-[1.03] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                                     >
-                                        Start Your 3-Day Free Trial <ArrowRight className="h-4 w-4" />
+                                        Start Designing Free <ArrowRight className="h-4 w-4" />
                                     </button>
                                 </div>
                             </div>

@@ -142,18 +142,18 @@ export default function LandingPage() {
         transition={{ duration: 0.7 }}
       >
         {/* Subtle radial glow */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.06) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, hsl(152,56%,40%,0.06) 0%, transparent 60%)' }} />
 
-        <div className="container mx-auto max-w-3xl relative z-10">
-          {/* Top pill badge */}
+        <div className="container mx-auto max-w-5xl relative z-10">
+          {/* Top pill badge — PAIN POINT */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200/60 rounded-full px-5 py-2 mb-4"
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-4 border" style={{ background: 'hsl(152,56%,40%,0.06)', borderColor: 'hsl(152,56%,40%,0.2)' }}
           >
-            <CheckCircle className="h-3.5 w-3.5 text-emerald-500" />
-            <span className="text-[11px] font-bold text-emerald-700 tracking-wide">Course + Skill Certificate + Freelance Projects + Free Software</span>
+            <CheckCircle className="h-3.5 w-3.5" style={{ color: 'hsl(152,56%,40%)' }} />
+            <span className="text-[11px] font-bold tracking-wide" style={{ color: 'hsl(152,56%,32%)' }}>Courses + Design Books + Freelance Board + Free Software</span>
           </motion.div>
 
           {/* Student count badge */}
@@ -161,20 +161,30 @@ export default function LandingPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="flex items-center justify-center gap-2 mb-8"
+            className="flex items-center justify-center gap-2 mb-6"
           >
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: 'hsl(152,56%,40%)' }} />
             <span className="text-[12px] font-semibold text-gray-500">50,000+ Students Supported 24/7 by Our Team</span>
           </motion.div>
+
+          {/* Pain point hook */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.22, duration: 0.5 }}
+            className="text-gray-500 text-sm sm:text-base font-medium max-w-xl mx-auto mb-4 leading-relaxed"
+          >
+            Stop wasting time searching 10 different places to learn design — and struggling to find projects after.
+          </motion.p>
 
           {/* Sub-headline */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.5 }}
-            className="text-gray-500 text-sm sm:text-base font-medium mb-2"
+            className="text-gray-500 text-sm sm:text-base md:text-lg font-medium mb-3"
           >
-            Learn Complete Interior and Exterior Designing and start taking personal projects.
+            Master <span className="font-extrabold text-gray-900" style={{ borderBottom: '3px solid hsl(152,56%,40%)', paddingBottom: '2px' }}>Interior and Exterior Designing</span> — start earning from personal projects.
           </motion.p>
 
           {/* Main headline */}
@@ -182,7 +192,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight leading-[1.15] mb-1"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.15] mb-1"
           >
             Learn to Design
           </motion.h1>
@@ -190,13 +200,9 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-[1.15] mb-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.15] mb-2"
           >
-            <span style={{ color: '#22c55e' }}>Homes</span>
-            <span className="text-gray-900">, </span>
-            <span style={{ color: '#f97316' }}>Offices</span>
-            <span className="text-gray-900"> & </span>
-            <span style={{ color: '#8b5cf6' }}>Villas</span>
+            Homes, Offices & Villas
           </motion.h1>
 
           {/* Italic sub */}
@@ -216,7 +222,7 @@ export default function LandingPage() {
             transition={{ delay: 0.45, duration: 0.5 }}
             className="text-sm sm:text-base font-bold text-gray-800 mb-1"
           >
-            Learn <span style={{ color: '#f97316' }} className="font-extrabold">PDR</span> — Planning, Designing & Rendering
+            Learn <span style={{ color: 'hsl(152,56%,40%)' }} className="font-extrabold">PDR</span> — Planning, Designing & Rendering
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
@@ -224,7 +230,7 @@ export default function LandingPage() {
             transition={{ delay: 0.48, duration: 0.5 }}
             className="text-[13px] text-gray-500 max-w-lg mx-auto mb-10 leading-relaxed"
           >
-            Skyrocket your career. Get the complete course, skill certificate, freelance projects & free software download — all in one bundle.
+            We teach you everything — AutoCAD, SketchUp, D5 Render, AI tools, execution, client skills — and then connect you to real freelance projects. All in one place.
           </motion.p>
 
           {/* Quote Card */}
@@ -232,25 +238,25 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="max-w-xl mx-auto rounded-2xl bg-gradient-to-br from-orange-50/80 to-white border border-orange-100/60 p-6 sm:p-8 text-left shadow-sm mb-10"
+            className="max-w-xl mx-auto rounded-2xl bg-gradient-to-br from-emerald-50/80 to-white border border-emerald-100/60 p-6 sm:p-8 text-left shadow-sm mb-10"
           >
             <p className="text-base sm:text-lg text-gray-700 italic font-serif leading-relaxed mb-4">
               "In our business of Architecture and Design, <span className="underline decoration-2 decoration-gray-800 font-bold not-italic">Planning, Design and Rendering</span> matter the most."
             </p>
-            <div className="w-10 h-1 rounded-full bg-orange-500 mb-4" />
+            <div className="w-10 h-1 rounded-full bg-accent mb-4" />
             <p className="text-[13px] text-gray-500 leading-relaxed mb-2">
               And now, the question is no longer <em className="font-semibold text-gray-700">how</em> to do it. The real question is…
             </p>
-            <h3 className="text-xl sm:text-2xl font-black" style={{ color: '#f97316' }}>
+            <h3 className="text-xl sm:text-2xl font-black" style={{ color: 'hsl(152,56%,40%)' }}>
               How to do it FASTER?
             </h3>
 
             {/* Rocket callout */}
-            <div className="mt-5 rounded-xl bg-orange-50/80 border border-orange-200/40 p-4 flex items-start gap-3">
+            <div className="mt-5 rounded-xl bg-emerald-50/80 border border-emerald-200/40 p-4 flex items-start gap-3">
               <span className="text-xl flex-shrink-0 mt-0.5">🚀</span>
               <p className="text-[13px] text-gray-600 leading-relaxed">
-                That's exactly why we present you this comprehensive course. A complete blueprint designed to make you{' '}
-                <span className="font-bold" style={{ color: '#22c55e' }}>job or business ready in just one month.</span>
+                That's exactly why we built this. A complete blueprint — from software basics to client-ready renders — designed to make you{' '}
+                <span className="font-bold" style={{ color: 'hsl(152,56%,40%)' }}>job or business ready in just one month.</span>
               </p>
             </div>
           </motion.div>
@@ -267,17 +273,14 @@ export default function LandingPage() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               onClick={() => navigate('/preview')}
-              className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-lg flex items-center gap-2"
-              style={{ background: 'linear-gradient(135deg, #f97316, #ea580c)' }}
+              className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-green-lg flex items-center gap-2 cta-breathe"
+              style={{ background: 'linear-gradient(135deg, hsl(152,56%,42%), hsl(152,56%,32%))' }}
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Get All Courses & 24/7 Team Support
+              Start Designing Free
               <ArrowRight className="h-4 w-4" />
             </motion.button>
             <p className="text-[10px] text-gray-400 font-medium tracking-wide">
-              24/7 support from team, installation help to course doubts • Free Software Links Included • 7-Day Money-Back Guarantee
+              No card needed · 24/7 team support · Free software included · Cancel anytime
             </p>
           </motion.div>
         </div>
@@ -291,13 +294,13 @@ export default function LandingPage() {
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
       >
-        <div className="container mx-auto max-w-5xl">
+        <div className="container mx-auto max-w-6xl">
           <motion.div className="text-center mb-10" variants={sectionVariants}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-tight">
-              Invest in Yourself Today.
+              Start Today.
             </h2>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight" style={{ color: '#22c55e' }}>
-              Start making money in the industry.
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight" style={{ color: 'hsl(152,56%,40%)' }}>
+              See what changes in your career.
             </h2>
           </motion.div>
 
@@ -366,7 +369,7 @@ export default function LandingPage() {
                   </div>
                   {/* After */}
                   <div className="flex-1">
-                    <span className="text-[9px] font-black uppercase tracking-widest" style={{ color: '#22c55e' }}>AFTER</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest" style={{ color: 'hsl(152,56%,40%)' }}>AFTER</span>
                     <p className="text-[12px] font-bold text-gray-900 mt-1 leading-snug">{card.afterText}</p>
                   </div>
                 </div>
@@ -378,32 +381,32 @@ export default function LandingPage() {
 
       {/* ─── STRUGGLE vs BLUEPRINT ─── */}
       <motion.section
-        className="py-14 sm:py-20 px-4"
-        style={{ background: 'linear-gradient(180deg, #f8faf8 0%, #ffffff 100%)' }}
+        className="py-16 sm:py-24 px-4 sm:px-8"
+        style={{ background: 'linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%)' }}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
         variants={sectionVariants}
       >
-        <div className="w-full max-w-6xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
           {/* Heading */}
           <motion.div className="text-center mb-10 sm:mb-14" variants={sectionVariants}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-tight">
               The Lonely, Frustrating Path
             </h2>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight mt-1">
-              vs. <span style={{ color: '#22c55e' }}>Our Hand-Holding Blueprint</span>
+              vs. <span style={{ color: 'hsl(152,56%,40%)' }}>Our Hand-Holding Blueprint</span>
             </h2>
             <p className="text-sm text-gray-400 mt-3 max-w-md mx-auto">See why 10,000+ beginners chose us over figuring it out alone</p>
           </motion.div>
 
           {/* Two-column comparison — stacked on mobile */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
 
             {/* ═══ LEFT: The Old Struggle ═══ */}
             <motion.div
               variants={itemVariants}
-              className="rounded-2xl border border-red-100/60 bg-white p-6 sm:p-8"
+              className="rounded-2xl border border-red-100/60 bg-white p-6 sm:p-8 lg:p-10"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-9 w-9 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
@@ -432,23 +435,23 @@ export default function LandingPage() {
             {/* ═══ RIGHT: Our Blueprint ═══ */}
             <motion.div
               variants={itemVariants}
-              className="rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/40 to-white p-6 sm:p-8"
+              className="rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/40 to-white p-6 sm:p-8 lg:p-10"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-9 w-9 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="h-4.5 w-4.5 text-emerald-500" />
+                  <CheckCircle className="h-4.5 w-4.5 text-accent" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-black text-emerald-600 tracking-tight">What You Get With Us</h3>
+                <h3 className="text-lg sm:text-xl font-black text-accent tracking-tight">What You Get With Us</h3>
               </div>
 
               <div className="space-y-5">
                 {[
-                  { emoji: "🎯", text: "A clear, step-by-step path: AutoCAD → SketchUp → V-Ray → Lumion → AI — no guesswork" },
-                  { emoji: "⚡", text: "AI does the heavy lifting. You focus on creativity. 10x your output, stress-free" },
-                  { emoji: "🏆", text: "A stunning portfolio built in just 15 days — even if you're starting from absolute zero" },
+                  { emoji: "🎯", text: "Structured courses covering AutoCAD, SketchUp, D5 Render, AI Rendering, Execution & Client Management" },
+                  { emoji: "⚡", text: "AI renders your designs in seconds — 10x faster output, zero stress" },
+                  { emoji: "📚", text: "Execution books for Kitchen, Bedroom, Living Room, Washroom, Study & Exterior — ready to use" },
                   { emoji: "🔗", text: "All software links included free — stop paying for expensive licenses" },
-                  { emoji: "💬", text: "24/7 team support — from installation help to clearing every doubt, we're always here" },
-                  { emoji: "💼", text: "Real freelance projects inside → start earning while you're still learning" },
+                  { emoji: "💬", text: "24/7 team support — installation, doubts, project reviews, we're always here" },
+                  { emoji: "💼", text: "Built-in freelance board → apply for real client projects while learning" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="text-lg flex-shrink-0 mt-0.5">{item.emoji}</span>
@@ -466,13 +469,13 @@ export default function LandingPage() {
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               onClick={() => navigate('/preview')}
-              className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-lg flex items-center gap-2 mx-auto"
-              style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)' }}
+              className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-green-lg flex items-center gap-2 mx-auto cta-breathe"
+              style={{ background: 'linear-gradient(135deg, hsl(152,56%,42%), hsl(152,56%,32%))' }}
             >
-              Try Everything Free for 3 Days
+              Start Designing Free
               <ArrowRight className="h-4 w-4" />
             </motion.button>
-            <p className="text-[10px] text-gray-400 font-medium mt-3">No card charged during trial · Cancel with one click · $10/mo after</p>
+            <p className="text-[10px] text-gray-400 font-medium mt-3">No card needed · Full access to everything · Cancel anytime · $10/mo after</p>
           </motion.div>
         </div>
       </motion.section>
@@ -584,7 +587,7 @@ export default function LandingPage() {
               onClick={() => navigate('/preview')}
               className="px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
             >
-              Start Free Now
+              Start Designing Free
             </motion.button>
           </motion.div>
         </div>
@@ -608,7 +611,7 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-xl text-center">
           <h2 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight text-foreground">
-            Start free. Cancel anytime. $10/mo.
+            Start designing. Cancel anytime. $10/mo.
           </h2>
           <motion.button
             whileHover={{ scale: 1.04, y: -1 }}
@@ -617,7 +620,7 @@ export default function LandingPage() {
             onClick={() => navigate('/preview')}
             className="mt-5 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
           >
-            Start Free Now
+            Start Designing Free
           </motion.button>
         </div>
       </motion.section>

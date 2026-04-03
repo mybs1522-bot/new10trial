@@ -85,7 +85,7 @@ export default function CoursesTab() {
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="font-black text-foreground text-sm uppercase tracking-wide mb-1">Courses are currently locked</p>
-                  <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-tight">Start your free trial to unlock all 6 courses + weekly new content.</p>
+                  <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-tight">Start your free trial to unlock all courses + weekly new content.</p>
                 </div>
               </div>
               <button

@@ -92,7 +92,7 @@ export default function StartCourseTab() {
 
         {/* Syllabus */}
         <div>
-          <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-6">Course Syllabus — 6 Modules</h2>
+          <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground mb-6">Course Syllabus</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {SYLLABUS.map(({ title, icon: Icon, topics }) => (
               <div key={title} className="premium-card !p-5 shadow-sm card-hover">
@@ -118,7 +118,7 @@ export default function StartCourseTab() {
         {/* Books Included */}
         <div className="premium-card !p-6 sm:!p-8 shadow-glass border-white/5">
           <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-accent mb-6 flex items-center gap-2">
-            <BookOpen className="h-3.5 w-3.5" /> 6 Design Books Included
+            <BookOpen className="h-3.5 w-3.5" /> Design Books Included
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {BOOKS.map((book) => (
@@ -150,12 +150,12 @@ export default function StartCourseTab() {
         <div className="rounded-2xl p-6 sm:p-8 text-center border border-accent/20"
           style={{ background: "linear-gradient(135deg, hsl(38 62% 10%) 0%, hsl(220 20% 6%) 100%)" }}>
           <p className="text-white font-black text-lg sm:text-xl mb-2 uppercase tracking-tight">Ready to become a professional designer?</p>
-          <p className="text-white/50 text-[11px] sm:text-xs mb-6 font-medium">3-day free trial · $10/mo · New content every Saturday</p>
+          <p className="text-white/50 text-[11px] sm:text-xs mb-6 font-medium">$10/mo · New content every Saturday</p>
           <button
             onClick={() => navigate("/dashboard/payment")}
             className="btn-gold px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base font-black uppercase tracking-widest shadow-gold hover:scale-105 transition-transform"
           >
-            🚀 Start Free Now
+            🚀 Start Designing Free
           </button>
         </div>
 
