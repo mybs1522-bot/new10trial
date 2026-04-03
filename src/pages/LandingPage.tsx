@@ -97,7 +97,7 @@ const faqs = [
 // Smooth animation variants
 const sectionVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] as const } },
 };
 
 const staggerContainer = {
@@ -107,7 +107,7 @@ const staggerContainer = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const } },
 };
 
 export default function LandingPage() {
@@ -372,6 +372,107 @@ export default function LandingPage() {
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ─── STRUGGLE vs BLUEPRINT ─── */}
+      <motion.section
+        className="py-14 sm:py-20 px-4"
+        style={{ background: 'linear-gradient(180deg, #f8faf8 0%, #ffffff 100%)' }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={sectionVariants}
+      >
+        <div className="w-full max-w-6xl mx-auto">
+          {/* Heading */}
+          <motion.div className="text-center mb-10 sm:mb-14" variants={sectionVariants}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+              The Lonely, Frustrating Path
+            </h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight mt-1">
+              vs. <span style={{ color: '#22c55e' }}>Our Hand-Holding Blueprint</span>
+            </h2>
+            <p className="text-sm text-gray-400 mt-3 max-w-md mx-auto">See why 10,000+ beginners chose us over figuring it out alone</p>
+          </motion.div>
+
+          {/* Two-column comparison — stacked on mobile */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+
+            {/* ═══ LEFT: The Old Struggle ═══ */}
+            <motion.div
+              variants={itemVariants}
+              className="rounded-2xl border border-red-100/60 bg-white p-6 sm:p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-9 w-9 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
+                  <span className="text-red-400 font-black text-sm">✕</span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-black text-red-500 tracking-tight">The Old Struggle</h3>
+              </div>
+
+              <div className="space-y-5">
+                {[
+                  { emoji: "😰", text: "Spending hours on one 3D view — and clients still ask for revisions" },
+                  { emoji: "😵", text: "Software feels overwhelming — you don't know where to even start" },
+                  { emoji: "🤖", text: "AI is creating designs in seconds — and you're worried your skills are already outdated" },
+                  { emoji: "❌", text: "Random YouTube tutorials that leave you more confused than before" },
+                  { emoji: "💸", text: "Paying for expensive software you barely know how to use" },
+                  { emoji: "📄", text: "No portfolio. No confidence. No idea how to land your first client" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-lg flex-shrink-0 mt-0.5">{item.emoji}</span>
+                    <p className="text-[13px] sm:text-sm text-gray-500 leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ═══ RIGHT: Our Blueprint ═══ */}
+            <motion.div
+              variants={itemVariants}
+              className="rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/40 to-white p-6 sm:p-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-9 w-9 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="h-4.5 w-4.5 text-emerald-500" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-black text-emerald-600 tracking-tight">What You Get With Us</h3>
+              </div>
+
+              <div className="space-y-5">
+                {[
+                  { emoji: "🎯", text: "A clear, step-by-step path: AutoCAD → SketchUp → V-Ray → Lumion → AI — no guesswork" },
+                  { emoji: "⚡", text: "AI does the heavy lifting. You focus on creativity. 10x your output, stress-free" },
+                  { emoji: "🏆", text: "A stunning portfolio built in just 15 days — even if you're starting from absolute zero" },
+                  { emoji: "🔗", text: "All software links included free — stop paying for expensive licenses" },
+                  { emoji: "💬", text: "24/7 team support — from installation help to clearing every doubt, we're always here" },
+                  { emoji: "💼", text: "Real freelance projects inside → start earning while you're still learning" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="text-lg flex-shrink-0 mt-0.5">{item.emoji}</span>
+                    <p className="text-[13px] sm:text-sm text-gray-700 leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div variants={itemVariants} className="text-center mt-10">
+            <motion.button
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              onClick={() => navigate('/preview')}
+              className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-lg flex items-center gap-2 mx-auto"
+              style={{ background: 'linear-gradient(135deg, #22c55e, #16a34a)' }}
+            >
+              Try Everything Free for 3 Days
+              <ArrowRight className="h-4 w-4" />
+            </motion.button>
+            <p className="text-[10px] text-gray-400 font-medium mt-3">No card charged during trial · Cancel with one click · $10/mo after</p>
           </motion.div>
         </div>
       </motion.section>
