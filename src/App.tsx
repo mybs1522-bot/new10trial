@@ -22,8 +22,20 @@ import ProfileTab from "./pages/dashboard/ProfileTab";
 import NotFound from "./pages/NotFound";
 import PreviewPage from "./pages/PreviewPage";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const queryClient = new QueryClient();
+
+const HashRedirector = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (window.location.hash.includes("type=recovery") && window.location.pathname !== "/reset-password") {
+      navigate("/reset-password" + window.location.hash);
+    }
+  }, [navigate]);
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -31,6 +43,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <HashRedirector />
         <ScrollToTop />
         <AuthProvider>
           <Routes>

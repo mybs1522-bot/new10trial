@@ -18,12 +18,19 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Supabase puts the recovery token in the URL hash
-    supabase.auth.onAuthStateChange((event) => {
+    // Check if recovery token is already in the URL hash (fallback if event was missed)
+    if (window.location.hash.includes("type=recovery")) {
+      setValidSession(true);
+    }
+    
+    // Listen for the recovery event live
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === "PASSWORD_RECOVERY") {
         setValidSession(true);
       }
     });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const handleReset = async (e: React.FormEvent) => {
@@ -99,7 +106,7 @@ export default function ResetPassword() {
                   required
                   icon={<Lock className="h-4 w-4 text-accent" />}
                 />
-                <motion.div variants={itemVariants}>
+                <div>
                   <Button
                     type="submit"
                     disabled={loading || !validSession}
@@ -107,7 +114,7 @@ export default function ResetPassword() {
                   >
                     {loading ? <><Loader2 className="h-5 w-5 animate-spin mr-3" />Synchronizing…</> : "Deploy New Key"}
                   </Button>
-                </motion.div>
+                </div>
               </form>
             </PremiumFormWrapper>
           </>
