@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import {
   Monitor, Box, Video, Cpu, Layers, Users,
   BookOpen, CheckCircle, ArrowRight, Briefcase,
-  Shield, BadgeCheck, Clock, Sparkles
+  Shield, BadgeCheck, Clock, Sparkles, Ruler, PencilRuler, Image, Clapperboard
 } from "lucide-react";
 
 import courseAutocad from "@/assets/course-autocad.jpg";
@@ -110,6 +110,44 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const } },
 };
 
+const INLINE_TIMER_TOTAL_SECONDS = 2 * 3600 + 27 * 60 + 32;
+const INLINE_TIMER_STORAGE_KEY = "landing_inline_trial_timer_start";
+
+function getInlineTimerTimeLeft(): number {
+  let start = localStorage.getItem(INLINE_TIMER_STORAGE_KEY);
+  if (!start) {
+    start = String(Date.now());
+    localStorage.setItem(INLINE_TIMER_STORAGE_KEY, start);
+  }
+  const elapsed = Math.floor((Date.now() - Number(start)) / 1000);
+  return INLINE_TIMER_TOTAL_SECONDS - (elapsed % INLINE_TIMER_TOTAL_SECONDS);
+}
+
+function formatInlineTimer(totalSeconds: number) {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return [hours, minutes, seconds].map((value) => String(value).padStart(2, "0")).join(":");
+}
+
+function InlineTrialTimer() {
+  const [timeLeft, setTimeLeft] = useState(getInlineTimerTimeLeft);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setTimeLeft(getInlineTimerTimeLeft()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 px-3 py-1.5 text-[11px] font-semibold text-emerald-700">
+      <Clock className="h-3.5 w-3.5 flex-shrink-0" />
+      <span>Free trial closing in</span>
+      <span className="font-black tabular-nums text-emerald-800">{formatInlineTimer(timeLeft)}</span>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const scrollRef = useScrollFadeIn();
   const [enrollOpen, setEnrollOpen] = useState(false);
@@ -136,125 +174,119 @@ export default function LandingPage() {
 
       {/* ─── HERO — PDR SECTION ─── */}
       <motion.section
-        className="pt-24 sm:pt-32 pb-10 sm:pb-14 px-4 bg-white text-center relative overflow-hidden"
+        className="pt-20 sm:pt-28 pb-8 sm:pb-12 px-3 sm:px-6 bg-white text-center relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         {/* Subtle radial glow */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, hsl(152,56%,40%,0.06) 0%, transparent 60%)' }} />
 
-        <div className="container mx-auto max-w-5xl relative z-10">
+        <div className="container mx-auto max-w-5xl px-0 sm:px-0 relative z-10">
           {/* Top pill badge — PAIN POINT */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-4 border" style={{ background: 'hsl(152,56%,40%,0.06)', borderColor: 'hsl(152,56%,40%,0.2)' }}
+            className="inline-flex max-w-full items-center gap-2 rounded-full px-4 sm:px-5 py-2 mb-4 border whitespace-nowrap" style={{ background: 'hsl(152,56%,40%,0.06)', borderColor: 'hsl(152,56%,40%,0.2)' }}
           >
-            <CheckCircle className="h-3.5 w-3.5" style={{ color: 'hsl(152,56%,40%)' }} />
-            <span className="text-[11px] font-bold tracking-wide" style={{ color: 'hsl(152,56%,32%)' }}>Courses + Design Books + Freelance Board + Free Software</span>
+            <CheckCircle className="h-3.5 w-3.5 flex-shrink-0" style={{ color: 'hsl(152,56%,40%)' }} />
+            <span className="text-[10px] sm:text-[11px] font-bold tracking-wide whitespace-nowrap" style={{ color: 'hsl(152,56%,32%)' }}>Start Making money as a designer.</span>
           </motion.div>
 
-          {/* Student count badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="flex items-center justify-center gap-2 mb-6"
+          {/* Greeting */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="text-gray-700 text-base sm:text-lg font-bold mb-3"
           >
-            <span className="h-2 w-2 rounded-full animate-pulse" style={{ background: 'hsl(152,56%,40%)' }} />
-            <span className="text-[12px] font-semibold text-gray-500">50,000+ Students Supported 24/7 by Our Team</span>
-          </motion.div>
+            Hello <span className="text-accent font-extrabold">Interior Designers and Architects</span>
+          </motion.p>
 
           {/* Pain point hook */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.22, duration: 0.5 }}
-            className="text-gray-500 text-sm sm:text-base font-medium max-w-xl mx-auto mb-4 leading-relaxed"
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-gray-600 text-sm sm:text-base font-semibold max-w-2xl mx-auto mb-4 leading-snug"
           >
-            Stop wasting time searching 10 different places to learn design — and struggling to find projects after.
-          </motion.p>
-
-          {/* Sub-headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.5 }}
-            className="text-gray-500 text-sm sm:text-base md:text-lg font-medium mb-3"
-          >
-            Master <span className="font-extrabold text-gray-900" style={{ borderBottom: '3px solid hsl(152,56%,40%)', paddingBottom: '2px' }}>Interior and Exterior Designing</span> — start earning from personal projects.
+            Stop wasting money learning random things.
           </motion.p>
 
           {/* Main headline */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.15] mb-1"
+            transition={{ delay: 0.25, duration: 0.6 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1] mb-2"
           >
-            Learn to Design
+            Learn. Earn.
           </motion.h1>
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1] mb-5"
+            style={{ color: 'hsl(152,56%,40%)' }}
+          >
+            All in one place.
+          </motion.h2>
+
+          {/* Value proposition - what you get */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight leading-[1.15] mb-2"
+            className="max-w-3xl mx-auto mb-6"
           >
-            Homes, Offices & Villas
-          </motion.h1>
+            <p className="text-gray-700 text-sm sm:text-base font-semibold mb-2">
+              Courses, Software, Books and Freelance Projects
+            </p>
+            <p className="text-gray-600 text-xs sm:text-sm font-medium">
+              for Interior Designers and Architects.
+            </p>
+          </motion.div>
 
-          {/* Italic sub */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-gray-400 text-lg sm:text-xl italic font-serif mb-8"
+          {/* Video embed */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="max-w-4xl mx-auto mb-6 rounded-2xl overflow-hidden shadow-2xl"
+            style={{ position: 'relative', paddingTop: '56.25%' }}
           >
-            and show real 3D to clients.
-          </motion.p>
-
-          {/* PDR line */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45, duration: 0.5 }}
-            className="text-sm sm:text-base font-bold text-gray-800 mb-1"
-          >
-            Learn <span style={{ color: 'hsl(152,56%,40%)' }} className="font-extrabold">PDR</span> — Planning, Designing & Rendering
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.48, duration: 0.5 }}
-            className="text-[13px] text-gray-500 max-w-lg mx-auto mb-10 leading-relaxed"
-          >
-            We teach you everything — AutoCAD, SketchUp, D5 Render, AI tools, execution, client skills — and then connect you to real freelance projects. All in one place.
-          </motion.p>
+            <iframe 
+              src="https://iframe.mediadelivery.net/embed/489113/562b87e6-4ac9-40b6-b343-479ada547387?autoplay=true&loop=true&muted=true&preload=true&responsive=true" 
+              loading="lazy" 
+              style={{ border: 0, position: 'absolute', top: 0, height: '100%', width: '100%' }} 
+              allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" 
+              allowFullScreen
+            />
+          </motion.div>
 
           {/* Quote Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="max-w-xl mx-auto rounded-2xl bg-gradient-to-br from-emerald-50/80 to-white border border-emerald-100/60 p-6 sm:p-8 text-left shadow-sm mb-10"
+            className="max-w-3xl mx-auto rounded-2xl bg-gradient-to-br from-emerald-50/80 to-white border border-emerald-100/60 p-5 sm:p-6 text-left shadow-sm mb-6"
           >
-            <p className="text-base sm:text-lg text-gray-700 italic font-serif leading-relaxed mb-4">
+            <p className="text-sm sm:text-base text-gray-700 italic font-serif leading-snug mb-3">
               "In our business of Architecture and Design, <span className="underline decoration-2 decoration-gray-800 font-bold not-italic">Planning, Design and Rendering</span> matter the most."
             </p>
-            <div className="w-10 h-1 rounded-full bg-accent mb-4" />
-            <p className="text-[13px] text-gray-500 leading-relaxed mb-2">
+            <div className="w-10 h-1 rounded-full bg-accent mb-3" />
+            <p className="text-xs sm:text-[13px] text-gray-500 leading-snug mb-2">
               And now, the question is no longer <em className="font-semibold text-gray-700">how</em> to do it. The real question is…
             </p>
-            <h3 className="text-xl sm:text-2xl font-black" style={{ color: 'hsl(152,56%,40%)' }}>
+            <h3 className="text-lg sm:text-xl font-black mb-3" style={{ color: 'hsl(152,56%,40%)' }}>
               How to do it FASTER?
             </h3>
 
             {/* Rocket callout */}
-            <div className="mt-5 rounded-xl bg-emerald-50/80 border border-emerald-200/40 p-4 flex items-start gap-3">
-              <span className="text-xl flex-shrink-0 mt-0.5">🚀</span>
-              <p className="text-[13px] text-gray-600 leading-relaxed">
+            <div className="rounded-xl bg-emerald-50/80 border border-emerald-200/40 p-3 sm:p-4 flex items-start gap-2.5">
+              <span className="text-lg flex-shrink-0 mt-0.5">🚀</span>
+              <p className="text-xs sm:text-[13px] text-gray-600 leading-snug">
                 That's exactly why we built this. A complete blueprint — from software basics to client-ready renders — designed to make you{' '}
                 <span className="font-bold" style={{ color: 'hsl(152,56%,40%)' }}>job or business ready in just one month.</span>
               </p>
@@ -266,94 +298,143 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-center gap-2"
           >
+            <InlineTrialTimer />
             <motion.button
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
               onClick={() => navigate('/preview')}
-              className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-green-lg flex items-center gap-2 cta-breathe"
+              className="px-12 py-5 rounded-full font-bold text-sm sm:text-base uppercase tracking-wider text-white shadow-green-lg flex items-center gap-3 cta-breathe touch-manipulation"
               style={{ background: 'linear-gradient(135deg, hsl(152,56%,42%), hsl(152,56%,32%))' }}
             >
-              Start Designing Free
-              <ArrowRight className="h-4 w-4" />
+              I want To Join
+              <ArrowRight className="h-5 w-5" />
             </motion.button>
             <p className="text-[10px] text-gray-400 font-medium tracking-wide">
               No card needed · 24/7 team support · Free software included · Cancel anytime
             </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.6 }}
+            className="mt-10 w-full overflow-hidden"
+          >
+            <div className="mb-5 text-center">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-gray-900">
+                This Is What You'll <span className="text-accent">Create</span>
+              </h3>
+            </div>
+            <style>{`
+              @keyframes marquee-scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .marquee-track {
+                display: flex;
+                gap: 1rem;
+                animation: marquee-scroll 25s linear infinite;
+                will-change: transform;
+              }
+            `}</style>
+            <div className="w-full [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
+              <div className="marquee-track">
+                {[hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8, hero1, hero2, hero3, hero4, hero5, hero6, hero7, hero8].map((src, index) => (
+                  <div
+                    key={index}
+                    className="relative aspect-[3/4] h-32 sm:h-40 md:h-48 flex-shrink-0"
+                    style={{ transform: `rotate(${index % 3 === 0 ? -2 : index % 3 === 1 ? 1.5 : -1}deg)` }}
+                  >
+                    <img
+                      src={src}
+                      alt={`Design showcase ${(index % 8) + 1}`}
+                      loading="eager"
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                    />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/10 to-transparent" />
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </motion.section>
 
       {/* ─── INVEST IN YOURSELF — ROI SECTION ─── */}
       <motion.section
-        className="py-14 sm:py-20 px-4 bg-white"
+        className="py-10 sm:py-16 px-5 sm:px-6 bg-white"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15, margin: "-50px" }}
         variants={sectionVariants}
       >
         <div className="container mx-auto max-w-6xl">
-          <motion.div className="text-center mb-10" variants={sectionVariants}>
+          <motion.div className="text-center mb-6 sm:mb-8" variants={sectionVariants}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-tight">
-              Start Today.
+              How Much You Can
             </h2>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight" style={{ color: 'hsl(152,56%,40%)' }}>
-              See what changes in your career.
+              Earn With Us
             </h2>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15, margin: "-50px" }}
           >
             {[
               {
-                title: "Single Render Charge",
-                emoji: "🖼️",
+                title: "Planning",
+                icon: Ruler,
                 beforeLabel: "BEFORE",
-                beforeText: "Struggling to ask ₹1000",
+                beforeText: "$30 to $60 per layout",
                 afterLabel: "AFTER",
-                afterText: "Confidently quoting ₹5,000+",
+                afterText: "$150 to $300 per floor plan",
               },
               {
-                title: "Interior Design Project",
-                emoji: "🏠",
+                title: "Designing",
+                icon: PencilRuler,
                 beforeLabel: "BEFORE",
-                beforeText: "Rejected for poor 3D quality",
+                beforeText: "$80 to $150 for small concepts",
                 afterLabel: "AFTER",
-                afterText: "Winning ₹80,000+ contracts",
+                afterText: "$400 to $900 for full room design",
               },
               {
-                title: "Time to Finish a Room",
-                emoji: "⏰",
+                title: "Image Renders",
+                icon: Image,
                 beforeLabel: "BEFORE",
-                beforeText: "3 Frustrating, Sleepless Nights",
+                beforeText: "$20 to $40 per image",
                 afterLabel: "AFTER",
-                afterText: "2 Easy Hours with our AI Workflow",
+                afterText: "$120 to $250 per render image",
               },
               {
-                title: "Your Career Confidence",
-                emoji: "🌟",
+                title: "Video Renders",
+                icon: Clapperboard,
                 beforeLabel: "BEFORE",
-                beforeText: "Constantly Anxious & Overwhelmed",
+                beforeText: "$75 to $150 for basic walkthroughs",
                 afterLabel: "AFTER",
-                afterText: "Relaxed, In-Demand Professional",
+                afterText: "$500 to $1,200 per walkthrough video",
               },
             ].map((card, i) => (
               <motion.div
                 key={i}
                 variants={itemVariants}
-                className="rounded-2xl border border-gray-100 bg-white p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow"
+                whileHover={{ scale: 1.02, y: -4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="rounded-2xl border border-gray-100 bg-white p-4 sm:p-5 shadow-sm hover:shadow-lg transition-all touch-manipulation"
               >
                 {/* Card header */}
-                <div className="flex items-start justify-between mb-5">
-                  <h4 className="text-[13px] font-bold text-gray-900 leading-tight pr-2">{card.title}</h4>
-                  <span className="text-2xl flex-shrink-0">{card.emoji}</span>
+                <div className="flex items-start justify-between mb-3">
+                  <h4 className="text-xs sm:text-[13px] font-bold text-gray-900 leading-tight pr-2">{card.title}</h4>
+                  <div className="h-10 w-10 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 text-accent">
+                    <card.icon className="h-5 w-5" />
+                  </div>
                 </div>
 
                 {/* Before / After */}
@@ -381,48 +462,48 @@ export default function LandingPage() {
 
       {/* ─── STRUGGLE vs BLUEPRINT ─── */}
       <motion.section
-        className="py-16 sm:py-24 px-4 sm:px-8"
+        className="py-10 sm:py-20 px-5 sm:px-8"
         style={{ background: 'linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%)' }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: true, amount: 0.1, margin: "-80px" }}
         variants={sectionVariants}
       >
         <div className="w-full max-w-7xl mx-auto">
           {/* Heading */}
-          <motion.div className="text-center mb-10 sm:mb-14" variants={sectionVariants}>
+          <motion.div className="text-center mb-6 sm:mb-10" variants={sectionVariants}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight leading-tight">
-              The Lonely, Frustrating Path
+              Learning Alone
             </h2>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-tight mt-1">
-              vs. <span style={{ color: 'hsl(152,56%,40%)' }}>Our Hand-Holding Blueprint</span>
+              vs. <span style={{ color: 'hsl(152,56%,40%)' }}>Learning With Us</span>
             </h2>
-            <p className="text-sm text-gray-400 mt-3 max-w-md mx-auto">See why 10,000+ beginners chose us over figuring it out alone</p>
           </motion.div>
 
           {/* Two-column comparison — stacked on mobile */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8 lg:gap-10">
 
             {/* ═══ LEFT: The Old Struggle ═══ */}
             <motion.div
               variants={itemVariants}
-              className="rounded-2xl border border-red-100/60 bg-white p-6 sm:p-8 lg:p-10"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="rounded-2xl border border-red-100/60 bg-white p-5 sm:p-7 lg:p-9 touch-manipulation"
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="h-9 w-9 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0">
                   <span className="text-red-400 font-black text-sm">✕</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-black text-red-500 tracking-tight">The Old Struggle</h3>
+                <h3 className="text-lg sm:text-xl font-black text-red-500 tracking-tight">On Your Own</h3>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-3 sm:space-y-4">
                 {[
-                  { emoji: "😰", text: "Spending hours on one 3D view — and clients still ask for revisions" },
-                  { emoji: "😵", text: "Software feels overwhelming — you don't know where to even start" },
-                  { emoji: "🤖", text: "AI is creating designs in seconds — and you're worried your skills are already outdated" },
-                  { emoji: "❌", text: "Random YouTube tutorials that leave you more confused than before" },
-                  { emoji: "💸", text: "Paying for expensive software you barely know how to use" },
-                  { emoji: "📄", text: "No portfolio. No confidence. No idea how to land your first client" },
+                  { emoji: "😰", text: "Hours on one design, still looks amateur" },
+                  { emoji: "😵", text: "Software feels impossible to learn" },
+                  { emoji: "❌", text: "Random tutorials, no clear path" },
+                  { emoji: "💸", text: "Expensive tools you can't use" },
+                  { emoji: "📄", text: "No portfolio, no clients" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="text-lg flex-shrink-0 mt-0.5">{item.emoji}</span>
@@ -435,23 +516,25 @@ export default function LandingPage() {
             {/* ═══ RIGHT: Our Blueprint ═══ */}
             <motion.div
               variants={itemVariants}
-              className="rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/40 to-white p-6 sm:p-8 lg:p-10"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/40 to-white p-5 sm:p-7 lg:p-9 touch-manipulation"
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="h-9 w-9 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
                   <CheckCircle className="h-4.5 w-4.5 text-accent" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-black text-accent tracking-tight">What You Get With Us</h3>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-3 sm:space-y-4">
                 {[
-                  { emoji: "🎯", text: "Structured courses covering AutoCAD, SketchUp, D5 Render, AI Rendering, Execution & Client Management" },
-                  { emoji: "⚡", text: "AI renders your designs in seconds — 10x faster output, zero stress" },
-                  { emoji: "📚", text: "Execution books for Kitchen, Bedroom, Living Room, Washroom, Study & Exterior — ready to use" },
-                  { emoji: "🔗", text: "All software links included free — stop paying for expensive licenses" },
-                  { emoji: "💬", text: "24/7 team support — installation, doubts, project reviews, we're always here" },
-                  { emoji: "💼", text: "Built-in freelance board → apply for real client projects while learning" },
+                  { emoji: "🎯", text: "Step-by-step courses: AutoCAD, SketchUp, D5, AI tools" },
+                  { emoji: "⚡", text: "AI renders in seconds, not hours" },
+                  { emoji: "📚", text: "Design templates for every room type" },
+                  { emoji: "🔗", text: "Free software included" },
+                  { emoji: "💬", text: "24/7 support from our team" },
+                  { emoji: "💼", text: "Real client projects to work on" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <span className="text-lg flex-shrink-0 mt-0.5">{item.emoji}</span>
@@ -464,6 +547,7 @@ export default function LandingPage() {
 
           {/* Bottom CTA */}
           <motion.div variants={itemVariants} className="text-center mt-10">
+            <InlineTrialTimer />
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
@@ -472,7 +556,7 @@ export default function LandingPage() {
               className="px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-[0.15em] text-white shadow-green-lg flex items-center gap-2 mx-auto cta-breathe"
               style={{ background: 'linear-gradient(135deg, hsl(152,56%,42%), hsl(152,56%,32%))' }}
             >
-              Start Designing Free
+              I want To Join
               <ArrowRight className="h-4 w-4" />
             </motion.button>
             <p className="text-[10px] text-gray-400 font-medium mt-3">No card needed · Full access to everything · Cancel anytime · $10/mo after</p>
@@ -494,26 +578,25 @@ export default function LandingPage() {
       </div>
       {/* ─── HOW TO EARN ─── */}
       <motion.section
-        className="py-12 sm:py-16 px-4 bg-secondary/30"
+        className="py-10 sm:py-16 px-5 sm:px-6 bg-secondary/30"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15, margin: "-50px" }}
         variants={sectionVariants}
       >
         <div className="container mx-auto max-w-2xl">
-          <motion.div className="text-center mb-8" variants={sectionVariants}>
+          <motion.div className="text-center mb-6" variants={sectionVariants}>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground leading-tight">
-              How do you <span className="text-green-gradient">start earning?</span>
+              How to <span className="text-green-gradient">Start Earning</span>
             </h2>
-            <p className="mt-2 text-[13px] text-muted-foreground">Four steps. That's it.</p>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15, margin: "-50px" }}
           >
             {[
               { step: "1", title: "Join", desc: "Sign up for $10/mo" },
@@ -524,7 +607,9 @@ export default function LandingPage() {
               <motion.div
                 key={item.step}
                 variants={itemVariants}
-                className="rounded-2xl border border-border/30 bg-white p-4 text-center shadow-soft"
+                whileHover={{ scale: 1.03, y: -3 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="rounded-2xl border border-border/30 bg-white p-4 sm:p-5 text-center shadow-soft hover:shadow-md transition-all touch-manipulation"
               >
                 <div className="h-9 w-9 rounded-full bg-accent text-white flex items-center justify-center mx-auto mb-3 text-[12px] font-black">
                   {item.step}
@@ -539,18 +624,18 @@ export default function LandingPage() {
 
       {/* ─── WHAT'S INSIDE ─── */}
       <motion.section
-        className="py-12 sm:py-16 px-4"
+        className="py-10 sm:py-14 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={sectionVariants}
       >
         <div className="container mx-auto max-w-xl">
-          <motion.div className="text-center mb-8" variants={sectionVariants}>
+          <motion.div className="text-center mb-6" variants={sectionVariants}>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground leading-tight">
-              Everything you need.{" "}
-              <span className="text-green-gradient">$10/mo.</span>
+              Everything Included
             </h2>
+            <p className="text-lg sm:text-xl font-bold text-green-gradient mt-2">$10/month</p>
           </motion.div>
 
           <motion.div
@@ -580,6 +665,7 @@ export default function LandingPage() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="text-center mt-7">
+            <InlineTrialTimer />
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
@@ -587,7 +673,7 @@ export default function LandingPage() {
               onClick={() => navigate('/preview')}
               className="px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
             >
-              Start Designing Free
+              I want To Join
             </motion.button>
           </motion.div>
         </div>
@@ -613,6 +699,7 @@ export default function LandingPage() {
           <h2 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight text-foreground">
             Start designing. Cancel anytime. $10/mo.
           </h2>
+          <InlineTrialTimer />
           <motion.button
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}
@@ -620,7 +707,7 @@ export default function LandingPage() {
             onClick={() => navigate('/preview')}
             className="mt-5 px-10 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.18em] btn-primary text-white shadow-green-lg cta-breathe"
           >
-            Start Designing Free
+            I want To Join
           </motion.button>
         </div>
       </motion.section>

@@ -14,11 +14,33 @@ const levels = [
   { value: "some_idea", label: "Some Experience", emoji: "🎯" },
 ];
 
+const INLINE_TIMER_TOTAL_SECONDS = 2 * 3600 + 27 * 60 + 32;
+const INLINE_TIMER_STORAGE_KEY = "landing_inline_trial_timer_start";
+
+function getInlineTimerTimeLeft(): number {
+  let start = localStorage.getItem(INLINE_TIMER_STORAGE_KEY);
+  if (!start) {
+    start = String(Date.now());
+    localStorage.setItem(INLINE_TIMER_STORAGE_KEY, start);
+  }
+  const elapsed = Math.floor((Date.now() - Number(start)) / 1000);
+  return INLINE_TIMER_TOTAL_SECONDS - (elapsed % INLINE_TIMER_TOTAL_SECONDS);
+}
+
+function formatInlineTimer(totalSeconds: number) {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return [hours, minutes, seconds].map((value) => String(value).padStart(2, "0")).join(":");
+}
+
 export function EnrollmentForm() {
   const [loading, setLoading] = useState(false);
   const [countryCode, setCountryCode] = useState("+1");
   const [showCountryPicker, setShowCountryPicker] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
+  const [timeLeft, setTimeLeft] = useState(getInlineTimerTimeLeft);
   const [form, setForm] = useState({
     full_name: "",
     email: "",
@@ -32,6 +54,11 @@ export function EnrollmentForm() {
     const detected = detectCountryCode();
     const country = COUNTRY_CODES.find(c => c.code === detected);
     if (country) setCountryCode(country.dial);
+  }, []);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setTimeLeft(getInlineTimerTimeLeft()), 1000);
+    return () => window.clearInterval(id);
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,6 +255,12 @@ export function EnrollmentForm() {
       </motion.div>
 
       <motion.div variants={itemVariants} className="pt-4">
+        <div className="mb-3 flex justify-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 px-3 py-1.5 text-[11px] font-semibold text-emerald-700">
+            <span>Free trial closing in</span>
+            <span className="font-black tabular-nums text-emerald-800">{formatInlineTimer(timeLeft)}</span>
+          </div>
+        </div>
         <Button
           type="submit"
           disabled={loading}
@@ -236,7 +269,7 @@ export function EnrollmentForm() {
           {loading ? (
             <><Loader2 className="h-5 w-5 animate-spin" />Creating your account...</>
           ) : (
-            <>Claim Your Spot Now <ArrowRight className="h-4 w-4" /></>
+            <>I want To Join <ArrowRight className="h-4 w-4" /></>
           )}
         </Button>
 

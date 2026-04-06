@@ -31,7 +31,7 @@ export const PremiumInput = React.forwardRef<HTMLInputElement, PremiumInputProps
                 <div className="relative group typing-glow">
                     {icon && (
                         <div className={cn(
-                            "absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground/30 transition-all duration-300 z-10",
+                            "absolute left-4 top-1/2 -translate-y-1/2 text-black/55 transition-all duration-300 z-10",
                             isFocused ? "text-accent scale-110" : "scale-100",
                             isFloating && "translate-y-1"
                         )}>
@@ -60,7 +60,7 @@ export const PremiumInput = React.forwardRef<HTMLInputElement, PremiumInputProps
                             icon && "left-12",
                             isFloating
                                 ? "top-2 text-[10px] font-bold text-accent uppercase tracking-wider"
-                                : "top-1/2 -translate-y-1/2 text-[14px] font-medium text-muted-foreground/50"
+                                : "top-1/2 -translate-y-1/2 text-[14px] font-semibold text-black"
                         )}
                     >
                         {label || placeholder}
@@ -95,7 +95,7 @@ export const PremiumSelect = React.forwardRef<HTMLSelectElement, PremiumSelectPr
                 <div className="relative group">
                     {icon && (
                         <div className={cn(
-                            "absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground/30 transition-all duration-300 z-10",
+                            "absolute left-4 top-1/2 -translate-y-1/2 text-black/55 transition-all duration-300 z-10",
                             isFocused ? "text-accent" : "",
                             isFloating && "translate-y-1"
                         )}>
@@ -125,7 +125,7 @@ export const PremiumSelect = React.forwardRef<HTMLSelectElement, PremiumSelectPr
                             icon && "left-12",
                             isFloating
                                 ? "top-2 text-[10px] font-bold text-accent uppercase tracking-wider"
-                                : "top-1/2 -translate-y-1/2 text-[14px] font-medium text-muted-foreground/50"
+                                : "top-1/2 -translate-y-1/2 text-[14px] font-semibold text-black"
                         )}
                     >
                         {label}
@@ -179,7 +179,7 @@ export const PremiumTextarea = React.forwardRef<HTMLTextAreaElement, PremiumText
                             "absolute left-4 transition-all duration-300 pointer-events-none",
                             isFloating
                                 ? "top-2 text-[10px] font-bold text-accent uppercase tracking-wider"
-                                : "top-5 text-[14px] font-medium text-muted-foreground/50"
+                                : "top-5 text-[14px] font-semibold text-black"
                         )}
                     >
                         {label}
