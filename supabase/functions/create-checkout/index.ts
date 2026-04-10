@@ -7,7 +7,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const PRICE_ID = "price_1T5tXMGGsoQTkhyviCvI36pG";
+const PRICE_ID = "price_1TJvfUGGsoQTkhyvdAJoSIuN";
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -65,9 +65,6 @@ serve(async (req) => {
       customer: customerId,
       line_items: [{ price: PRICE_ID, quantity: 1 }],
       mode: "subscription",
-      subscription_data: {
-        trial_period_days: 3,
-      },
       success_url: `${frontendOrigin}/dashboard/courses?checkout=success`,
       cancel_url: `${frontendOrigin}/payment`,
       allow_promotion_codes: true,

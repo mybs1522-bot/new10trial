@@ -33,7 +33,7 @@ export default function CoursesTab() {
       try {
         if (typeof window !== "undefined" && (window as any).fbq) {
           // As requested: mark the start of trial as a Purchase for pixel optimization
-          (window as any).fbq('track', 'Purchase', { value: '10.00', currency: 'USD' });
+          (window as any).fbq('track', 'Purchase', { value: '20.00', currency: 'USD' });
         }
       } catch (e) {
         console.error("FB Pixel error", e);
@@ -85,7 +85,7 @@ export default function CoursesTab() {
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="font-black text-foreground text-sm uppercase tracking-wide mb-1">Courses are currently locked</p>
-                  <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-tight">Start your free trial to unlock all courses + weekly new content.</p>
+                  <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-tight">Subscribe to unlock all courses + weekly new content.</p>
                 </div>
               </div>
               <button

@@ -134,7 +134,7 @@ function SalesPage({ profile, navigate }: { profile: any; navigate: any }) {
     else localStorage.setItem("avada_spots", "17");
   }, []);
 
-  const UnlockBtn = ({ label = "Start Designing Free", large = false, variant = "primary" }: { label?: string; large?: boolean; variant?: string }) => (
+  const UnlockBtn = ({ label = "Start Designing Now", large = false, variant = "primary" }: { label?: string; large?: boolean; variant?: string }) => (
     <button
       onClick={() => navigate("/dashboard/payment")}
       className={cn(
@@ -361,7 +361,7 @@ function SalesPage({ profile, navigate }: { profile: any; navigate: any }) {
             <p className="text-white/40 text-[12px] mb-6 max-w-md mx-auto leading-relaxed">
               Cancel anytime · Students earn an average of <strong className="text-white/70">$2,400 in their first 60 days</strong>
             </p>
-            <UnlockBtn label="Start Designing Free" large />
+            <UnlockBtn label="Start Designing Now" large />
             <p className="text-white/20 text-[10px] mt-4 font-medium">
               🔒 Secure checkout · Instant access to all content
             </p>

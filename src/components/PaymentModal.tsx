@@ -55,7 +55,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
       const setupIntentStatus = result.setupIntent?.status;
 
       if (setupIntentStatus === "succeeded") {
-        toast({ title: "Welcome aboard! 🎉", description: "Your free trial has started." });
+        toast({ title: "Welcome aboard! 🎉", description: "Your subscription is now active." });
         await onSuccess();
         return;
       }
@@ -83,7 +83,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
             const latestStatus = si.setupIntent?.status;
 
             if (latestStatus === "succeeded") {
-              toast({ title: "Welcome aboard! 🎉", description: "Your free trial has started." });
+              toast({ title: "Welcome aboard! 🎉", description: "Your subscription is now active." });
               await onSuccess();
               return;
             }
@@ -96,7 +96,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
 
           const { data } = await supabase.functions.invoke("check-subscription");
           if (data?.subscribed) {
-            toast({ title: "Welcome aboard! 🎉", description: "Your free trial has started." });
+            toast({ title: "Welcome aboard! 🎉", description: "Your subscription is now active." });
             await onSuccess();
             return;
           }
@@ -118,20 +118,20 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {/* $0 charge callout */}
+      {/* Pricing callout */}
       <div className="rounded-xl border border-accent/20 bg-accent/5 p-4 space-y-3">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
             <CheckCircle className="h-5 w-5 text-accent" />
           </div>
           <div>
-            <p className="text-sm font-black text-foreground">$0.00 charged today</p>
-            <p className="text-[10px] font-medium text-muted-foreground">Your card won't be charged during the trial</p>
+            <p className="text-sm font-black text-foreground">$20.00/month</p>
+            <p className="text-[10px] font-medium text-muted-foreground">Full access, billed monthly</p>
           </div>
         </div>
         <div className="flex items-center gap-2 pl-[52px]">
           <Bell className="h-3.5 w-3.5 text-accent flex-shrink-0" />
-          <p className="text-[10px] font-bold text-muted-foreground">We'll send you a reminder before your trial ends — cancel anytime with one click</p>
+          <p className="text-[10px] font-bold text-muted-foreground">Cancel anytime from your dashboard with one click</p>
         </div>
       </div>
 
@@ -152,7 +152,7 @@ function CheckoutForm({ onSuccess }: { onSuccess: () => void }) {
         {loading ? (
           <><Loader2 className="h-5 w-5 animate-spin" />Processing…</>
         ) : (
-          <>🚀 Start Free Now</>
+          <>🚀 Subscribe Now</>
         )}
       </button>
       <div className="flex items-center justify-center gap-2 text-[9px] font-bold uppercase tracking-widest text-muted-foreground opacity-50">
@@ -227,7 +227,7 @@ export function PaymentModal({ open, onOpenChange }: PaymentModalProps) {
       <div className="text-center space-y-2">
         <h2 className="text-xl font-black uppercase tracking-tight text-foreground">Complete Payment</h2>
         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
-          Free trial · Then $10/mo · Cancel anytime
+          $20/mo · Full access · Cancel anytime
         </p>
       </div>
     </>

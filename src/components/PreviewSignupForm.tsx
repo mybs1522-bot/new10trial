@@ -130,7 +130,7 @@ export function PreviewSignupForm() {
                     <span className="text-[11px] font-semibold text-foreground/70">{memberCount.toLocaleString()}+ members</span>
                 </div>
                 <span className="text-muted-foreground/30 text-[10px]">·</span>
-                <span className="text-[11px] font-semibold text-foreground/70">$10/mo</span>
+                <span className="text-[11px] font-semibold text-foreground/70">$20/mo</span>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -185,10 +185,10 @@ export function PreviewSignupForm() {
                 {/* Pricing callout */}
                 <div className="flex items-center justify-between py-3 px-4 rounded-xl bg-accent/[0.04] border border-accent/10 mt-2">
                     <div>
-                        <p className="text-[11px] font-bold text-foreground">Start Free Trial</p>
-                        <p className="text-[10px] text-muted-foreground">then $10/mo · cancel anytime</p>
+                        <p className="text-[11px] font-bold text-foreground">Design & AI Mastery Plan</p>
+                        <p className="text-[10px] text-muted-foreground">$20/mo · cancel anytime</p>
                     </div>
-                    <span className="text-lg font-black text-accent">$0</span>
+                    <span className="text-lg font-black text-accent">$20</span>
                 </div>
 
                 {error && (
@@ -203,7 +203,7 @@ export function PreviewSignupForm() {
                     {loading ? (
                         <><Loader2 className="h-5 w-5 animate-spin" />Redirecting...</>
                     ) : (
-                        <>Start Free Now <ArrowRight className="h-4 w-4" /></>
+                        <>Get Started <ArrowRight className="h-4 w-4" /></>
                     )}
                 </button>
 

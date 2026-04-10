@@ -136,10 +136,10 @@ export default function PaymentPage() {
         {/* Header */}
         <div className="text-center mb-6 lg:mb-10">
           <div className="inline-flex items-center gap-2 bg-accent/5 text-accent text-[10px] font-black tracking-[0.15em] uppercase px-4 py-2 rounded-full mb-4 border border-accent/15">
-            <Sparkles className="h-3 w-3" /> Free trial · $0 charged today
+            <Sparkles className="h-3 w-3" /> Design & AI Mastery · $20/mo
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black text-foreground tracking-tight">
-            Start Your Free Trial
+            Start Your Membership
           </h1>
           <p className="text-muted-foreground text-xs sm:text-sm font-medium mt-2.5 max-w-md mx-auto">
             Join 10,000+ designers mastering their craft. Cancel anytime.
@@ -157,11 +157,10 @@ export default function PaymentPage() {
               <div className="p-5 sm:p-6 text-center">
                 <p className="text-accent text-[10px] font-black tracking-[0.15em] uppercase mb-3">Design & AI Mastery</p>
                 <div className="flex items-baseline justify-center gap-1.5 mb-1">
-                  <span className="text-muted-foreground/40 text-lg font-medium line-through mr-1">$10</span>
-                  <span className="text-accent text-3xl font-black">$0</span>
-                  <span className="text-muted-foreground text-xs font-medium">today</span>
+                  <span className="text-accent text-3xl font-black">$20</span>
+                  <span className="text-muted-foreground text-xs font-medium">/month</span>
                 </div>
-                <p className="text-[10px] font-medium text-muted-foreground">Then $10/mo after trial</p>
+                <p className="text-[10px] font-medium text-muted-foreground">Billed monthly · Cancel anytime</p>
               </div>
             </div>
 
@@ -217,14 +216,14 @@ export default function PaymentPage() {
               {/* ── Card Form Body ── */}
               <div className="bg-white p-5 sm:p-7 space-y-5">
 
-                {/* $0 callout */}
+                {/* Pricing callout */}
                 <div className="rounded-xl border border-accent/15 bg-accent/[0.03] p-3.5 flex items-center gap-3">
                   <div className="h-9 w-9 rounded-full bg-accent/8 flex items-center justify-center flex-shrink-0">
                     <Zap className="h-4 w-4 text-accent" />
                   </div>
                   <div>
-                    <p className="text-[12px] font-bold text-foreground">Your card won't be charged today</p>
-                    <p className="text-[10px] font-medium text-muted-foreground">Free trial · Cancel anytime before it ends</p>
+                    <p className="text-[12px] font-bold text-foreground">$20/month — full access to everything</p>
+                    <p className="text-[10px] font-medium text-muted-foreground">Billed monthly · Cancel anytime</p>
                   </div>
                 </div>
 
@@ -259,8 +258,8 @@ export default function PaymentPage() {
             <div className="flex items-center gap-3 p-4 rounded-xl bg-accent/[0.03] border border-accent/10">
               <Bell className="h-5 w-5 text-accent flex-shrink-0" />
               <div>
-                <p className="text-[11px] font-bold text-foreground">We'll remind you before your trial ends</p>
-                <p className="text-[10px] text-muted-foreground">You'll get email reminders at day 1 and day 2 — cancel with one click anytime</p>
+                <p className="text-[11px] font-bold text-foreground">Cancel anytime with one click</p>
+                <p className="text-[10px] text-muted-foreground">No lock-in — manage or cancel your subscription from your dashboard at any time</p>
               </div>
             </div>
           </div>

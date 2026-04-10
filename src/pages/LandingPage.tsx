@@ -61,7 +61,7 @@ const stats = [
   { value: "$4.2M+", label: "Earned by students" },
   { value: "10,000+", label: "Students worldwide" },
   { value: "23", label: "Days to first dollar" },
-  { value: "94%", label: "Continue after trial" },
+  { value: "94%", label: "Stay after month 1" },
 ];
 
 const outcomes = [
@@ -83,15 +83,15 @@ const testimonials = [
   { author: { name: "Aisha Khan", handle: "@aisha_designs", avatar: "https://avatar.vercel.sh/aisha" }, text: "I was terrified of AutoCAD. Now I draft floor plans in 2 hours and have 4 repeat clients who send me referrals every month." },
   { author: { name: "Noah Chen", handle: "@noah_spaces", avatar: "https://avatar.vercel.sh/noah" }, text: "Got hired by a design firm within 30 days. They told me my SketchUp skills were better than their senior designers. I'd been learning for 3 weeks." },
   { author: { name: "Olivia Laurent", handle: "@olivia_interiors", avatar: "https://avatar.vercel.sh/olivia" }, text: "The freelance job board is a goldmine. I picked up 3 paying clients in my first week of access. Nothing else out there gives you this." },
-  { author: { name: "Lucas Müller", handle: "@lucas_arch", avatar: "https://avatar.vercel.sh/lucas" }, text: "Best $10 I've ever spent. Got my first paying client before I even finished the course. The return on this is honestly absurd." },
+  { author: { name: "Lucas Müller", handle: "@lucas_arch", avatar: "https://avatar.vercel.sh/lucas" }, text: "Best $20 I've ever spent. Got my first paying client before I even finished the course. The return on this is honestly absurd." },
 ];
 
 const faqs = [
   { q: "I have absolutely zero experience — will I actually be able to do this?", a: "That's exactly who this was built for. 78% of our students had zero design background when they started. The program is step-by-step — we don't skip anything. You'll go from 'I don't know where to start' to sending your first invoice in about 3 weeks." },
   { q: "How quickly will I actually start making money?", a: "The average student lands their first paying project in 23 days. We don't just teach you tools — we give you a freelance job board with live gigs, plus the exact proposal templates to win them. Some students earn back their membership cost in the first week." },
   { q: "I've already tried other courses and they didn't work", a: "Most courses teach you one tool, then leave you stranded. No clients, no business skills, no path to income. We give you the complete system — 6 software skills, client-winning proposal templates, a pricing calculator, and a live job board with 100+ gigs. It's designed to get you paid, not just educated." },
-  { q: "What exactly do I get for $10/month?", a: "Everything: 6 full professional courses (AutoCAD, SketchUp, D5 Render, AI tools, workflow, business skills), 6 premium design books, a verified certificate, new content added weekly, and exclusive access to our freelance job board with 100+ projects. About the price of two coffees." },
-  { q: "What if I don't like it? Am I locked in?", a: "Not even a little. You get 3 full days to try everything — completely free, $0 charged. If it's not for you, cancel with one click, no questions, no awkward phone call. But honestly? 94 out of every 100 students who start the trial end up staying." },
+  { q: "What exactly do I get for $20/month?", a: "Everything: 6 full professional courses (AutoCAD, SketchUp, D5 Render, AI tools, workflow, business skills), 6 premium design books, a verified certificate, new content added weekly, and exclusive access to our freelance job board with 100+ projects. All for less than the cost of one dinner out." },
+  { q: "What if I don't like it? Am I locked in?", a: "Not even a little. Cancel anytime with one click — no questions, no awkward phone call. But honestly? 94 out of every 100 students who join end up staying because the results speak for themselves." },
 ];
 
 // Smooth animation variants
@@ -111,7 +111,7 @@ const itemVariants = {
 };
 
 const INLINE_TIMER_TOTAL_SECONDS = 2 * 3600 + 27 * 60 + 32;
-const INLINE_TIMER_STORAGE_KEY = "landing_inline_trial_timer_start";
+const INLINE_TIMER_STORAGE_KEY = "landing_inline_offer_timer_start";
 
 function getInlineTimerTimeLeft(): number {
   let start = localStorage.getItem(INLINE_TIMER_STORAGE_KEY);
@@ -131,7 +131,7 @@ function formatInlineTimer(totalSeconds: number) {
   return [hours, minutes, seconds].map((value) => String(value).padStart(2, "0")).join(":");
 }
 
-function InlineTrialTimer() {
+function InlineOfferTimer() {
   const [timeLeft, setTimeLeft] = useState(getInlineTimerTimeLeft);
 
   useEffect(() => {
@@ -142,7 +142,7 @@ function InlineTrialTimer() {
   return (
     <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 px-3 py-1.5 text-[11px] font-semibold text-emerald-700">
       <Clock className="h-3.5 w-3.5 flex-shrink-0" />
-      <span>Free trial closing in</span>
+      <span>Offer closing in</span>
       <span className="font-black tabular-nums text-emerald-800">{formatInlineTimer(timeLeft)}</span>
     </div>
   );
@@ -300,7 +300,7 @@ export default function LandingPage() {
             transition={{ delay: 0.6, duration: 0.5 }}
             className="flex flex-col items-center gap-2"
           >
-            <InlineTrialTimer />
+            <InlineOfferTimer />
             <motion.button
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.96 }}
@@ -313,7 +313,7 @@ export default function LandingPage() {
               <ArrowRight className="h-5 w-5" />
             </motion.button>
             <p className="text-[10px] text-gray-400 font-medium tracking-wide">
-              No card needed · 24/7 team support · Free software included · Cancel anytime
+              $20/mo · 24/7 team support · Free software included · Cancel anytime
             </p>
           </motion.div>
 
@@ -547,7 +547,7 @@ export default function LandingPage() {
 
           {/* Bottom CTA */}
           <motion.div variants={itemVariants} className="text-center mt-10">
-            <InlineTrialTimer />
+            <InlineOfferTimer />
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.97 }}
@@ -559,7 +559,7 @@ export default function LandingPage() {
               I want To Join
               <ArrowRight className="h-4 w-4" />
             </motion.button>
-            <p className="text-[10px] text-gray-400 font-medium mt-3">No card needed · Full access to everything · Cancel anytime · $10/mo after</p>
+            <p className="text-[10px] text-gray-400 font-medium mt-3">$20/mo · Full access to everything · Cancel anytime</p>
           </motion.div>
         </div>
       </motion.section>
@@ -599,7 +599,7 @@ export default function LandingPage() {
             viewport={{ once: true, amount: 0.15, margin: "-50px" }}
           >
             {[
-              { step: "1", title: "Join", desc: "Sign up for $10/mo" },
+              { step: "1", title: "Join", desc: "Sign up for $20/mo" },
               { step: "2", title: "Learn", desc: "Complete AI & software courses (included free)" },
               { step: "3", title: "Apply", desc: "Pick freelance projects posted in the community" },
               { step: "4", title: "Get Paid", desc: "Deliver work, earn $500–$5,000 per project" },
@@ -635,7 +635,7 @@ export default function LandingPage() {
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-foreground leading-tight">
               Everything Included
             </h2>
-            <p className="text-lg sm:text-xl font-bold text-green-gradient mt-2">$10/month</p>
+            <p className="text-lg sm:text-xl font-bold text-green-gradient mt-2">$20/month</p>
           </motion.div>
 
           <motion.div
@@ -665,7 +665,7 @@ export default function LandingPage() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="text-center mt-7">
-            <InlineTrialTimer />
+            <InlineOfferTimer />
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
@@ -697,9 +697,9 @@ export default function LandingPage() {
       >
         <div className="container mx-auto max-w-xl text-center">
           <h2 className="text-xl sm:text-2xl font-display font-extrabold tracking-tight text-foreground">
-            Start designing. Cancel anytime. $10/mo.
+            Start designing. Cancel anytime. $20/mo.
           </h2>
-          <InlineTrialTimer />
+          <InlineOfferTimer />
           <motion.button
             whileHover={{ scale: 1.04, y: -1 }}
             whileTap={{ scale: 0.97 }}

@@ -257,7 +257,7 @@ export function EnrollmentForm() {
       <motion.div variants={itemVariants} className="pt-4">
         <div className="mb-3 flex justify-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/70 px-3 py-1.5 text-[11px] font-semibold text-emerald-700">
-            <span>Free trial closing in</span>
+            <span>Offer closing in</span>
             <span className="font-black tabular-nums text-emerald-800">{formatInlineTimer(timeLeft)}</span>
           </div>
         </div>

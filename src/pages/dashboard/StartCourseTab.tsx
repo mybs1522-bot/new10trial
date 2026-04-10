@@ -150,12 +150,12 @@ export default function StartCourseTab() {
         <div className="rounded-2xl p-6 sm:p-8 text-center border border-accent/20"
           style={{ background: "linear-gradient(135deg, hsl(38 62% 10%) 0%, hsl(220 20% 6%) 100%)" }}>
           <p className="text-white font-black text-lg sm:text-xl mb-2 uppercase tracking-tight">Ready to become a professional designer?</p>
-          <p className="text-white/50 text-[11px] sm:text-xs mb-6 font-medium">$10/mo · New content every Saturday</p>
+          <p className="text-white/50 text-[11px] sm:text-xs mb-6 font-medium">$20/mo · New content every Saturday</p>
           <button
             onClick={() => navigate("/dashboard/payment")}
             className="btn-gold px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base font-black uppercase tracking-widest shadow-gold hover:scale-105 transition-transform"
           >
-            🚀 Start Designing Free
+            🚀 Start Designing Now
           </button>
         </div>
 

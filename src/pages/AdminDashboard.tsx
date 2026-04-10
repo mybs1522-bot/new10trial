@@ -206,7 +206,7 @@ export default function AdminDashboard() {
   const WA_MESSAGES = [
     (name: string) => `Hey ${name}
 
-You signed up at start.avadalearn.com but haven't started your free trial yet.
+You signed up at start.avadalearn.com but haven't activated your membership yet.
 
 We just added new AI courses that help you create renders exactly like your own design concepts - faster and client-ready.
 
@@ -214,15 +214,15 @@ Plus, you get access to complete Interior Design books covering living room, kit
 
 If you're serious about upgrading your design game, don't leave this unused.
 
-Activate your 3-day trial here - https://start.avadalearn.com
+Join here - https://start.avadalearn.com
 
 Need help getting started? Just reply here and I'll assist you.`,
 
     (name: string) => `Hi ${name}, just checking in.
 
-I noticed you still haven't activated your free trial. No pressure at all, but I wanted to make sure you didn't miss it.
+I noticed you still haven't activated your membership. No pressure at all, but I wanted to make sure you didn't miss it.
 
-You get full access to all courses, the design books, and the freelance job board completely free.
+For $20/month you get full access to all courses, the design books, and the freelance job board — everything in one place.
 
 A lot of students tell me they wish they started sooner. If there's anything stopping you or if you have questions, just reply here.
 
@@ -230,9 +230,9 @@ Here's the link again - https://start.avadalearn.com`,
 
     (name: string) => `Hey ${name}, last message from me on this.
 
-Your free trial spot is still open but I won't be following up again after this.
+Your membership spot is still open but I won't be following up again after this.
 
-If interior design is something you want to pursue seriously, this is probably the easiest way to start. Full access, no commitment.
+If interior design is something you want to pursue seriously, this is probably the easiest way to start. Full access at $20/mo, cancel anytime.
 
 If not, no worries at all. I wish you the best either way.
 

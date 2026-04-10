@@ -137,7 +137,7 @@ export default function ProfileTab() {
                 <h2 className="font-black text-foreground text-[11px] uppercase tracking-tight">Subscription</h2>
               </div>
               <p className="text-[11px] text-muted-foreground font-medium">
-                You're currently on the <strong className="text-foreground">Design & AI Mastery</strong> plan — $10/mo with new content every Saturday.
+                You're currently on the <strong className="text-foreground">Design & AI Mastery</strong> plan — $20/mo with new content every Saturday.
               </p>
               <button
                 onClick={() => setShowCancelFlow(true)}
